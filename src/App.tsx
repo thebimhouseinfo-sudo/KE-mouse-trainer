@@ -2137,6 +2137,16 @@ export default function App() {
     }
   };
 
+  const baseUrl = import.meta.env.BASE_URL;
+
+  const playGuide = [
+    { bgPos: '0px 0px', label: 'Di chuột', sub: 'Ngắm bắn', bg: '#EFF6FF' },
+    { bgPos: '-56px 0px', label: 'Click trái', sub: 'Bắn dơi', bg: '#FFFBEB' },
+    { bgPos: '-112px 0px', label: 'Click phải', sub: 'Ấp trứng', bg: '#ECFDF5' },
+    { bgPos: '-56px 0px', label: '2× Click', sub: 'Nhặt trứng', bg: '#FDF2F8', badge: '✌️' },
+    { bgPos: '-56px 0px', label: 'Giữ & kéo', sub: 'Đuổi sói', bg: '#F5F3FF', badge: '👉' },
+  ];
+
   return (
     <div 
       id="game-viewport" 
@@ -2148,8 +2158,132 @@ export default function App() {
         ref={containerRef}
         className="flex-1 bg-slate-950 relative flex items-center justify-center overflow-hidden h-full"
       >
-        {/* Canvas wrapper - relative so pause btn anchors to game frame corner */}
-        <div className="relative w-full h-full" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        {/* START SCREEN — full viewport */}
+        {gameState === GameState.START && (
+          <div id="start-overlay" className="start-overlay absolute inset-0 z-30 flex flex-col items-center justify-start p-3 sm:p-5 overflow-y-auto text-left">
+            <div className="start-content relative z-10 py-2 overlay-enter">
+
+              <div className="start-breadcrumb">
+                <a href="https://kideschool.blogspot.com/p/tin-hoc.html">
+                  🏠 Trang chủ
+                </a>
+                <span style={{ opacity: 0.5 }}>›</span>
+                <span className="start-breadcrumb-pill">🪺 Bảo vệ tổ chim</span>
+              </div>
+
+              <div className="start-hero-card">
+                <div className="relative z-10 min-w-0">
+                  <h1 id="main-overlay-h2" className="start-hero-title">
+                    Bảo Vệ Tổ Trứng
+                  </h1>
+                  <p id="main-overlay-subtxt" className="start-hero-sub">
+                    Luyện chuột cùng chim non 🐣
+                  </p>
+                </div>
+                <div className="start-sprite-scene hidden sm:block">
+                  <div style={{
+                    position: 'absolute', bottom: 0, left: 0, width: '100%', height: '72%',
+                    backgroundImage: `url('${baseUrl}Nest.png')`,
+                    backgroundSize: '320px 160px',
+                    backgroundPosition: '0px 0px',
+                    backgroundRepeat: 'no-repeat',
+                  }} />
+                  <div style={{
+                    position: 'absolute', bottom: '28%', left: '14%', width: '22%', height: '32%',
+                    backgroundImage: `url('${baseUrl}Egg.png')`,
+                    backgroundSize: '144px 36px',
+                    backgroundPosition: '0px 0px',
+                    backgroundRepeat: 'no-repeat',
+                  }} />
+                  <div style={{
+                    position: 'absolute', bottom: '24%', left: '36%', width: '24%', height: '36%',
+                    backgroundImage: `url('${baseUrl}Egg.png')`,
+                    backgroundSize: '160px 40px',
+                    backgroundPosition: '-40px 0px',
+                    backgroundRepeat: 'no-repeat',
+                  }} />
+                  <div style={{
+                    position: 'absolute', bottom: '30%', left: '62%', width: '18%', height: '28%',
+                    backgroundImage: `url('${baseUrl}Egg.png')`,
+                    backgroundSize: '120px 30px',
+                    backgroundPosition: '0px 0px',
+                    backgroundRepeat: 'no-repeat',
+                  }} />
+                  <div className="animate-bounce" style={{
+                    position: 'absolute', top: 0, right: '2%', width: '38%', height: '52%',
+                    backgroundImage: `url('${baseUrl}Bird.png')`,
+                    backgroundSize: '240px 60px',
+                    backgroundPosition: '0px 0px',
+                    backgroundRepeat: 'no-repeat',
+                    animationDuration: '1.4s',
+                  }} />
+                </div>
+              </div>
+
+              <div className="start-card">
+                <div className="start-card-label">Cách chơi</div>
+                <div className="guide-grid">
+                  {playGuide.map((item, i) => (
+                    <div key={i} className="guide-card" style={{ background: item.bg }}>
+                      <div className="guide-card-icon">
+                        <div
+                          className="guide-card-icon-sprite"
+                          style={{
+                            backgroundImage: `url('${baseUrl}Mouse Click.png')`,
+                            backgroundSize: '168px 56px',
+                            backgroundPosition: item.bgPos,
+                          }}
+                        />
+                        {item.badge && <span className="guide-card-badge">{item.badge}</span>}
+                      </div>
+                      <div className="guide-card-label">{item.label}</div>
+                      <div className="guide-card-sub">{item.sub}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="start-card">
+                <div className="start-card-label">Chọn độ khó</div>
+                <div id="diff-select" className="diff-row">
+                  <button
+                    id="btn-level-easy"
+                    onClick={() => handleStartGame(Difficulty.EASY)}
+                    className="diff-btn-soft diff-btn-soft-easy"
+                  >
+                    <span className="diff-btn-soft-icon">🌟</span>
+                    <span className="diff-btn-soft-text">
+                      <span className="diff-btn-soft-title" style={{ color: '#047857' }}>Chơi dễ</span>
+                      <span className="diff-btn-soft-desc">Dành cho bé mới tập</span>
+                    </span>
+                  </button>
+                  <button
+                    id="btn-level-hard"
+                    onClick={() => handleStartGame(Difficulty.HARD)}
+                    className="diff-btn-soft diff-btn-soft-hard"
+                  >
+                    <span className="diff-btn-soft-icon">🔥</span>
+                    <span className="diff-btn-soft-text">
+                      <span className="diff-btn-soft-title" style={{ color: '#C2410C' }}>Chơi khó</span>
+                      <span className="diff-btn-soft-desc">Thử thách thực sự</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              {highScore > 0 && (
+                <div className="text-center font-semibold mb-2" style={{ color: '#9CA3AF', fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
+                  🏅 Điểm cao nhất:{' '}
+                  <span className="game-heading" style={{ color: '#F59E0B', fontSize: 'clamp(1.1rem, 3.5vw, 1.35rem)' }}>{highScore}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Game frame — canvas + in-game overlays */}
+        <div className="relative w-full h-full flex items-center justify-center">
+          <div className="game-frame">
           {gameState === GameState.PLAYING && (
             <button
               id="pause-btn"
@@ -2157,10 +2291,10 @@ export default function App() {
               title="Tạm dừng game (ESC)"
               className="absolute z-20 cursor-pointer select-none"
               style={{
-                top: '12px',
-                right: '12px',
-                width: '44px',
-                height: '44px',
+                top: 'clamp(8px, 1.5vw, 14px)',
+                right: 'clamp(8px, 1.5vw, 14px)',
+                width: 'clamp(38px, 6vw, 46px)',
+                height: 'clamp(38px, 6vw, 46px)',
                 borderRadius: '50%',
                 background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
                 border: '3px solid rgba(255,255,255,0.6)',
@@ -2169,9 +2303,9 @@ export default function App() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 transition: 'transform 0.1s',
-                fontSize: '20px',
+                fontSize: 'clamp(16px, 3vw, 20px)',
               }}
-              onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.12)')}
+              onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.1)')}
               onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
               onMouseDown={e => (e.currentTarget.style.transform = 'scale(0.92) translateY(2px)')}
               onMouseUp={e => (e.currentTarget.style.transform = 'scale(1)')}
@@ -2179,138 +2313,28 @@ export default function App() {
               ⏸️
             </button>
           )}
-        {/* START SCREEN PANEL */}
-        {gameState === GameState.START && (
-          <div id="start-overlay" className="absolute inset-0 z-25 flex flex-col items-center justify-center p-4 sm:p-8 overflow-y-auto"
-            style={{
-              background: 'linear-gradient(160deg, rgba(255, 247, 230, 0.95), rgba(238, 248, 255, 0.95))',
-              fontFamily: "'Quicksand', sans-serif",
-              color: 'var(--text)',
-            }}
-          >
-            {/* Floating decorative shapes */}
-            <div className="deco deco1"></div>
-            <div className="deco deco2"></div>
-            <div className="deco deco3"></div>
-
-            <div className="w-full max-w-2xl mx-auto relative z-10 flex flex-col items-center">
-
-              {/* Hero section with logo - using game background */}
-              <div className="rounded-[2.5rem] p-0 mb-8 relative overflow-hidden flex flex-col items-center justify-center animate-in fade-in zoom-in duration-700" 
-                style={{
-                  width: '100%',
-                  aspectRatio: '21/9',
-                  backgroundImage: `url('${import.meta.env.BASE_URL}Game background.png')`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center 40%',
-                  boxShadow: '0 25px 50px -12px rgba(91,140,255,0.4)',
-                }}
-              >
-                <div className="absolute inset-0 bg-black/10"></div>
-                {/* Logo image centered on game background */}
-                <img 
-                  src={`${import.meta.env.BASE_URL}logo.png`} 
-                  alt="Bảo Vệ Tổ Trứng"
-                  className="max-w-[80%] h-auto drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)] z-10"
-                />
-              </div>
-
-              {/* Difficulty select - Game-style buttons */}
-              <div className="rounded-[2rem] bg-white/70 backdrop-blur-md p-6 sm:p-8 shadow-2xl w-full border border-white/50 animate-in slide-in-from-bottom-8 duration-700 delay-200"
-                style={{
-                  boxShadow: '0 20px 40px rgba(60,60,100,.1)',
-                }}
-              >
-                <h3 className="text-center font-bold text-gray-500 uppercase tracking-widest text-sm mb-6">Chọn độ khó để bắt đầu</h3>
-                <div id="diff-select" className="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-center">
-                  <button
-                    id="btn-level-easy"
-                    onClick={() => handleStartGame(Difficulty.EASY)}
-                    className="cursor-pointer transition-all text-center rounded-2xl p-6 flex flex-col items-center gap-3 relative overflow-hidden group h-full"
-                    style={{
-                      background: 'linear-gradient(180deg, #34D399 0%, #059669 100%)',
-                      border: 'none',
-                      boxShadow: '0 8px 0 #047857, 0 15px 30px rgba(5,150,105,0.3)',
-                    }}
-                    onMouseEnter={e => {
-                      e.currentTarget.style.transform = 'translateY(-4px)';
-                      e.currentTarget.style.boxShadow = '0 12px 0 #047857, 0 20px 35px rgba(5,150,105,0.4)';
-                    }}
-                    onMouseLeave={e => {
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 8px 0 #047857, 0 15px 30px rgba(5,150,105,0.3)';
-                    }}
-                    onMouseDown={e => {
-                      e.currentTarget.style.transform = 'translateY(4px)';
-                      e.currentTarget.style.boxShadow = '0 4px 0 #047857, 0 10px 20px rgba(0,0,0,0.15)';
-                    }}
-                  >
-                    <div className="bg-white/20 rounded-full p-4 mb-1 group-hover:scale-110 transition-transform">
-                      <span className="text-5xl drop-shadow-lg">🌟</span>
-                    </div>
-                    <div>
-                      <span className="block font-black text-2xl text-white tracking-wide drop-shadow-md">CHƠI DỄ</span>
-                      <span className="text-sm text-white/90 font-semibold opacity-80">Dành cho bé mới tập</span>
-                    </div>
-                  </button>
-
-                  <button
-                    id="btn-level-hard"
-                    onClick={() => handleStartGame(Difficulty.HARD)}
-                    className="cursor-pointer transition-all text-center rounded-2xl p-6 flex flex-col items-center gap-3 relative overflow-hidden group h-full"
-                    style={{
-                      background: 'linear-gradient(180deg, #FB923C 0%, #EA580C 100%)',
-                      border: 'none',
-                      boxShadow: '0 8px 0 #C2410C, 0 15px 30px rgba(234,88,12,0.3)',
-                    }}
-                    onMouseEnter={e => {
-                      e.currentTarget.style.transform = 'translateY(-4px)';
-                      e.currentTarget.style.boxShadow = '0 12px 0 #C2410C, 0 20px 35px rgba(234,88,12,0.4)';
-                    }}
-                    onMouseLeave={e => {
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 8px 0 #C2410C, 0 15px 30px rgba(234,88,12,0.3)';
-                    }}
-                    onMouseDown={e => {
-                      e.currentTarget.style.transform = 'translateY(4px)';
-                      e.currentTarget.style.boxShadow = '0 4px 0 #C2410C, 0 10px 20px rgba(0,0,0,0.15)';
-                    }}
-                  >
-                    <div className="bg-white/20 rounded-full p-4 mb-1 group-hover:scale-110 transition-transform">
-                      <span className="text-5xl drop-shadow-lg">🔥</span>
-                    </div>
-                    <div>
-                      <span className="block font-black text-2xl text-white tracking-wide drop-shadow-md">CHƠI KHÓ</span>
-                      <span className="text-sm text-white/90 font-semibold opacity-80">Thử thách thực sự</span>
-                    </div>
-                  </button>
-                </div>
-              </div>
-
-              {highScore > 0 && (
-                <div className="mt-8 text-center bg-white/50 backdrop-blur-sm px-6 py-2 rounded-full border border-white/50 shadow-sm animate-in fade-in duration-1000 delay-500">
-                  <span className="text-gray-500 font-bold text-sm uppercase tracking-wider">🏅 Điểm cao nhất: </span>
-                  <span className="text-xl font-black" style={{color: '#F59E0B'}}>{highScore}</span>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
 
         {/* PAUSED SCREEN PANEL */}
         {gameState === GameState.PAUSED && (
-          <div id="pause-overlay" onContextMenu={(e) => e.preventDefault()} className="absolute inset-0 z-40 flex flex-col items-center justify-center p-6 text-center"
-            style={{background: 'rgba(30,27,75,0.45)', backdropFilter: 'blur(6px)', fontFamily: 'system-ui, -apple-system, sans-serif'}}
+          <div id="pause-overlay" onContextMenu={(e) => e.preventDefault()}
+            className="absolute inset-0 z-40 flex flex-col items-center justify-center p-4 text-center game-overlay-blur"
           >
-            <div className="rounded-3xl p-8 max-w-sm w-full shadow-2xl bg-white" style={{color: '#1E1B4B'}}>
-              <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl" style={{background: '#F5F3FF'}}>
+            <div className="game-panel game-panel-xl overlay-enter">
+              <div className="rounded-2xl flex items-center justify-center mx-auto mb-4"
+                style={{
+                  width: 'clamp(60px, 14vw, 72px)',
+                  height: 'clamp(60px, 14vw, 72px)',
+                  background: '#F5F3FF',
+                  fontSize: 'clamp(1.75rem, 5vw, 2.25rem)',
+                }}
+              >
                 ⏸️
               </div>
 
-              <h2 id="pause-h2" className="text-2xl font-extrabold mb-1" style={{color: '#6366F1'}}>
+              <h2 id="pause-h2" className="game-heading mb-1" style={{ color: '#6366F1', fontSize: 'clamp(1.5rem, 4.5vw, 1.85rem)' }}>
                 Tạm dừng
               </h2>
-              <p id="pause-p" className="text-sm mb-6" style={{color: '#9CA3AF'}}>
+              <p id="pause-p" className="mb-6" style={{ color: '#9CA3AF', fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
                 Bé hãy nghỉ ngơi một chút nhé! 🌙
               </p>
 
@@ -2318,13 +2342,7 @@ export default function App() {
                 <button
                   id="resume-btn"
                   onClick={() => handleResume()}
-                  className="w-full cursor-pointer active:scale-95 transition-all rounded-2xl py-3.5 font-extrabold text-base text-white"
-                  style={{
-                    background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
-                    boxShadow: '0 4px 14px -4px rgba(34,197,94,0.5)',
-                  }}
-                  onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
-                  onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+                  className="game-btn-primary game-btn-green"
                 >
                   ▶️ Tiếp tục chơi
                 </button>
@@ -2332,13 +2350,7 @@ export default function App() {
                 <button
                   id="exit-btn"
                   onClick={() => handleExit()}
-                  className="w-full cursor-pointer active:scale-95 transition-all rounded-2xl py-3.5 font-extrabold text-base"
-                  style={{
-                    background: '#F3F4F6',
-                    color: '#6B7280',
-                  }}
-                  onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
-                  onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+                  className="game-btn-secondary"
                 >
                   🏠 Thoát game
                 </button>
@@ -2350,55 +2362,53 @@ export default function App() {
         {/* DEFEAT SCREEN PANEL */}
         {gameState === GameState.DEFEAT && (
           <div id="defeat-overlay" onContextMenu={(e) => e.preventDefault()}
-            className="absolute inset-0 z-25 flex flex-col items-center justify-center p-4 text-center overflow-y-auto"
-            style={{
-              background: 'linear-gradient(155deg, #FFF1F2 0%, #F5F3FF 50%, #EEF2FF 100%)',
-              fontFamily: 'system-ui, -apple-system, sans-serif',
-              color: '#1E1B4B',
-            }}
+            className="absolute inset-0 z-30 flex flex-col items-center justify-center p-4 text-center overflow-y-auto game-overlay-defeat"
           >
-            <div className="max-w-sm w-full">
-              <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl" style={{background: '#FFE4E6'}}>
+            <div className="game-panel game-panel-xl overlay-enter">
+              <div className="rounded-2xl flex items-center justify-center mx-auto mb-4"
+                style={{
+                  width: 'clamp(60px, 14vw, 72px)',
+                  height: 'clamp(60px, 14vw, 72px)',
+                  background: '#FFE4E6',
+                  fontSize: 'clamp(1.75rem, 5vw, 2.25rem)',
+                }}
+              >
                 😿
               </div>
 
-              <h2 id="defeat-h2" className="text-2xl sm:text-3xl font-extrabold mb-2" style={{color: '#E11D48'}}>
+              <h2 id="defeat-h2" className="game-heading mb-2" style={{ color: '#E11D48', fontSize: 'clamp(1.4rem, 4.5vw, 1.75rem)' }}>
                 Trứng đã bị mang đi hết!
               </h2>
-              <p id="defeat-p" className="text-sm mb-5 leading-relaxed" style={{color: '#6B7280'}}>
+              <p id="defeat-p" className="mb-5 leading-relaxed" style={{ color: '#6B7280', fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
                 Dơi và sói đã lấy hết trứng trong tổ rồi. Bé hãy thử lại để bảo vệ tốt hơn nhé! 💪
               </p>
 
-              <div className="rounded-3xl bg-white p-4 mb-5 shadow-sm text-left space-y-2.5 text-sm">
-                <div className="text-xs font-bold uppercase tracking-widest mb-1 text-center" style={{color: '#9CA3AF'}}>
+              <div className="rounded-2xl bg-white/90 p-4 mb-5 text-left space-y-2.5"
+                style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}
+              >
+                <div className="text-xs font-bold uppercase tracking-widest mb-1 text-center" style={{ color: '#9CA3AF' }}>
                   📊 Thống kê trận đấu
                 </div>
-                <div className="flex justify-between items-center">
-                  <span style={{color: '#6B7280'}}>🎯 Bắn trúng dơi</span>
-                  <span className="font-extrabold" style={{color: '#14B8A6'}}>{stats.batHits} lần</span>
+                <div className="flex justify-between items-center gap-2">
+                  <span style={{ color: '#6B7280' }}>🎯 Bắn trúng dơi</span>
+                  <span className="game-heading" style={{ color: '#14B8A6', fontSize: '1rem' }}>{stats.batHits} lần</span>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span style={{color: '#6B7280'}}>💨 Bắn hụt</span>
-                  <span className="font-extrabold" style={{color: '#F472B6'}}>{stats.missedShots} lần</span>
+                <div className="flex justify-between items-center gap-2">
+                  <span style={{ color: '#6B7280' }}>💨 Bắn hụt</span>
+                  <span className="game-heading" style={{ color: '#F472B6', fontSize: '1rem' }}>{stats.missedShots} lần</span>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span style={{color: '#6B7280'}}>🐣 Chim nở thành công</span>
-                  <span className="font-extrabold" style={{color: '#3B82F6'}}>{stats.birdsRescued} chú</span>
+                <div className="flex justify-between items-center gap-2">
+                  <span style={{ color: '#6B7280' }}>🐣 Chim nở thành công</span>
+                  <span className="game-heading" style={{ color: '#3B82F6', fontSize: '1rem' }}>{stats.birdsRescued} chú</span>
                 </div>
               </div>
 
               <button
                 id="restart-defeat-btn"
                 onClick={() => setGameState(GameState.START)}
-                className="w-full cursor-pointer active:scale-95 transition-all rounded-2xl py-3.5 font-extrabold text-base text-white flex items-center justify-center gap-2"
-                style={{
-                  background: 'linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)',
-                  boxShadow: '0 4px 14px -4px rgba(99,102,241,0.5)',
-                }}
-                onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
-                onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+                className="game-btn-primary game-btn-purple flex items-center justify-center gap-2"
               >
-                <RotateCcw className="w-5 h-5" />
+                <RotateCcw style={{ width: '1.15rem', height: '1.15rem' }} />
                 Cho bé chơi lại
               </button>
             </div>
@@ -2408,14 +2418,8 @@ export default function App() {
         {/* VICTORY SCREEN PANEL */}
         {gameState === GameState.VICTORY && showVictoryScreen && (
           <div id="victory-overlay" onContextMenu={(e) => e.preventDefault()}
-            className="absolute inset-0 z-25 flex flex-col items-center justify-center p-4 text-center overflow-y-auto"
-            style={{
-              background: 'linear-gradient(155deg, #FFFBEB 0%, #ECFDF5 45%, #EEF2FF 100%)',
-              fontFamily: 'system-ui, -apple-system, sans-serif',
-              color: '#1E1B4B',
-            }}
+            className="absolute inset-0 z-30 flex flex-col items-center justify-center p-4 text-center overflow-y-auto game-overlay-end"
           >
-            {/* Floating confetti */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
               {['🎊','🎉','⭐','✨','🌟','🎊','🎉','💫','🎊','⭐','✨','🌟'].map((s, i) => (
                 <span key={i} className="absolute animate-bounce select-none" style={{
@@ -2423,88 +2427,89 @@ export default function App() {
                   top: `${(i * 11 + 3) % 85}%`,
                   animationDelay: `${i * 0.2}s`,
                   animationDuration: `${1.2 + (i % 4) * 0.4}s`,
-                  fontSize: `${1.2 + (i % 3) * 0.6}rem`,
-                  opacity: 0.6,
+                  fontSize: `${0.9 + (i % 3) * 0.4}rem`,
+                  opacity: 0.55,
                 }}>{s}</span>
               ))}
             </div>
 
-            <div className="relative z-10 max-w-sm w-full">
-              {/* Trophy + birds celebration */}
+            <div className="relative z-10 game-panel game-panel-xl overlay-enter">
               <div className="relative flex items-end justify-center gap-2 mb-3">
                 <div className="animate-bounce" style={{
-                  width: '60px', height: '60px',
-                  backgroundImage: `url('${import.meta.env.BASE_URL}Bird.png')`,
-                  backgroundSize: '240px 60px', backgroundPosition: '0px 0px', backgroundRepeat: 'no-repeat',
+                  width: 'clamp(52px, 12vw, 64px)',
+                  height: 'clamp(52px, 12vw, 64px)',
+                  backgroundImage: `url('${baseUrl}Bird.png')`,
+                  backgroundSize: '256px 64px',
+                  backgroundPosition: '0px 0px',
+                  backgroundRepeat: 'no-repeat',
                   animationDelay: '0.1s',
                 }} />
                 <div className="relative">
-                  <div className="text-7xl animate-bounce" style={{animationDuration: '0.8s', filter: 'drop-shadow(0 6px 14px rgba(245,158,11,0.4))'}}>🏆</div>
-                  <span className="absolute -top-1 -right-2 text-xl animate-spin" style={{animationDuration: '2s'}}>✨</span>
+                  <div className="animate-bounce" style={{
+                    fontSize: 'clamp(2.75rem, 9vw, 4rem)',
+                    animationDuration: '0.8s',
+                    filter: 'drop-shadow(0 6px 14px rgba(245,158,11,0.4))',
+                    lineHeight: 1,
+                  }}>🏆</div>
+                  <span className="absolute -top-1 -right-2 animate-spin" style={{ animationDuration: '2s', fontSize: 'clamp(1rem, 3vw, 1.25rem)' }}>✨</span>
                 </div>
                 <div className="animate-bounce" style={{
-                  width: '60px', height: '60px', transform: 'scaleX(-1)',
-                  backgroundImage: `url('${import.meta.env.BASE_URL}Bird.png')`,
-                  backgroundSize: '240px 60px', backgroundPosition: '-180px 0px', backgroundRepeat: 'no-repeat',
+                  width: 'clamp(52px, 12vw, 64px)',
+                  height: 'clamp(52px, 12vw, 64px)',
+                  transform: 'scaleX(-1)',
+                  backgroundImage: `url('${baseUrl}Bird.png')`,
+                  backgroundSize: '256px 64px',
+                  backgroundPosition: '-192px 0px',
+                  backgroundRepeat: 'no-repeat',
                   animationDelay: '0.2s',
                 }} />
               </div>
 
-              {/* Title */}
-              <h2 id="victory-h2" className="font-extrabold leading-tight mb-1" style={{fontSize: 'clamp(1.6rem, 5vw, 2.4rem)', color: '#16A34A'}}>
+              <h2 id="victory-h2" className="game-heading mb-1" style={{ fontSize: 'clamp(1.5rem, 5vw, 2rem)', color: '#16A34A' }}>
                 Bé thắng rồi! 🎉
               </h2>
-              <p id="victory-p" className="text-sm font-medium mb-4" style={{color: '#6B7280'}}>
+              <p id="victory-p" className="font-medium mb-4" style={{ color: '#6B7280', fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
                 Tất cả chim non đã nở an toàn! Bé giỏi lắm! 🐣
               </p>
 
-              {/* Score big display */}
-              <div className="rounded-3xl bg-white p-4 mb-3 shadow-sm">
-                <div className="text-xs font-bold uppercase tracking-widest mb-1" style={{color: '#9CA3AF'}}>⭐ Điểm của bé</div>
-                <div className="font-extrabold mb-3" style={{
-                  fontSize: 'clamp(2.5rem, 8vw, 3.5rem)',
+              <div className="rounded-2xl bg-white/90 p-4 mb-4">
+                <div className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: '#9CA3AF' }}>⭐ Điểm của bé</div>
+                <div className="game-heading mb-4" style={{
+                  fontSize: 'clamp(2.25rem, 8vw, 3.25rem)',
                   color: '#F59E0B',
                   lineHeight: 1,
                 }}>{score}</div>
 
-                {/* Stats row */}
                 <div className="grid grid-cols-3 gap-2">
                   {[
                     { icon: '🎯', label: 'Bắn trúng', value: stats.batHits, color: '#14B8A6', bg: '#ECFDF5' },
                     { icon: '🐣', label: 'Chim nở', value: stats.birdsRescued, color: '#3B82F6', bg: '#EFF6FF' },
                     { icon: '💨', label: 'Bắn hụt', value: stats.missedShots, color: '#F472B6', bg: '#FDF2F8' },
                   ].map((s, i) => (
-                    <div key={i} className="rounded-2xl p-2 text-center" style={{background: s.bg}}>
-                      <div className="text-xl mb-0.5">{s.icon}</div>
-                      <div className="font-extrabold text-lg" style={{color: s.color}}>{s.value}</div>
-                      <div className="text-xs" style={{color: '#9CA3AF'}}>{s.label}</div>
+                    <div key={i} className="rounded-xl p-2 text-center" style={{ background: s.bg }}>
+                      <div style={{ fontSize: 'clamp(1.1rem, 3.5vw, 1.35rem)' }} className="mb-0.5">{s.icon}</div>
+                      <div className="game-heading" style={{ color: s.color, fontSize: 'clamp(1rem, 3.2vw, 1.2rem)' }}>{s.value}</div>
+                      <div style={{ color: '#9CA3AF', fontSize: 'clamp(0.65rem, 2vw, 0.75rem)' }}>{s.label}</div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* High score badge if applicable */}
               {score >= highScore && score > 0 && (
-                <div className="rounded-2xl py-2 px-4 mb-3 text-sm font-bold" style={{
+                <div className="rounded-xl py-2.5 px-4 mb-4 font-bold" style={{
                   background: '#FFFBEB',
                   border: '1.5px solid #FDE68A',
                   color: '#D97706',
+                  fontSize: 'clamp(0.875rem, 2.5vw, 1rem)',
                 }}>
                   🏅 Kỷ lục mới của bé!
                 </div>
               )}
 
-              {/* Play again button */}
               <button
                 id="restart-victory-btn"
                 onClick={() => setGameState(GameState.START)}
-                className="w-full cursor-pointer active:scale-95 transition-all rounded-2xl py-3.5 font-extrabold text-base text-white"
-                style={{
-                  background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
-                  boxShadow: '0 4px 14px -4px rgba(34,197,94,0.5)',
-                }}
-                onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
-                onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+                className="game-btn-primary game-btn-green"
               >
                 🔄 Chơi lại ván mới!
               </button>
@@ -2525,9 +2530,10 @@ export default function App() {
             state.isRightPressed = false;
           }}
           onDoubleClick={handleDoubleClick}
-          onContextMenu={(e) => e.preventDefault()} // Intercept default browser right click menu!
-          className="block bg-slate-900 border border-slate-800 rounded-[2.5rem] shadow-2xl relative w-full h-full cursor-none object-contain z-0"
+          onContextMenu={(e) => e.preventDefault()}
+          className="absolute inset-0 block w-full h-full bg-slate-900 cursor-none z-0"
         />
+          </div>
         </div>
 
         {/* HUD removed - difficulty badge and menu button deleted */}

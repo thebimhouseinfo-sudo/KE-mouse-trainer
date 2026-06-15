@@ -63,3 +63,348 @@ body {
   bottom: 40px;
   left: 60px;
 }
+
+/* Game frame — khớp tỷ lệ canvas 3968×2144 */
+.game-frame {
+  position: relative;
+  aspect-ratio: 3968 / 2144;
+  width: min(100%, calc(92dvh * 3968 / 2144));
+  height: min(92dvh, calc(100dvw * 2144 / 3968));
+  max-width: 100%;
+  max-height: 92dvh;
+  border-radius: clamp(1rem, 3vw, 2.5rem);
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+  border: 2px solid rgba(255, 255, 255, 0.08);
+}
+
+.game-heading {
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.game-panel {
+  width: min(90%, 420px);
+  padding: clamp(1.25rem, 4vw, 2rem);
+  border-radius: clamp(1.25rem, 3vw, 1.75rem);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 40px rgba(60, 60, 100, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+.game-panel-wide {
+  width: min(94%, 480px);
+}
+
+.game-panel-xl {
+  width: min(96%, 540px);
+}
+
+/* Start screen */
+.start-overlay {
+  background: linear-gradient(155deg, #EEF2FF 0%, #F5F3FF 40%, #FFF7ED 100%);
+  color: #1E1B4B;
+}
+
+.start-content {
+  width: 100%;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.start-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: clamp(0.75rem, 2.2vw, 0.875rem);
+  font-weight: 600;
+  color: #6D6A8C;
+  flex-wrap: wrap;
+}
+
+.start-breadcrumb a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  text-decoration: none;
+  color: #6D6A8C;
+  transition: box-shadow 0.15s ease;
+}
+
+.start-breadcrumb a:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.start-breadcrumb-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  background: #E6FCF5;
+  color: #0F9B8E;
+}
+
+.start-hero-card {
+  border-radius: clamp(1.25rem, 3vw, 1.75rem);
+  padding: clamp(1.25rem, 4vw, 1.75rem);
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 55%, #38BDF8 100%);
+  box-shadow: 0 12px 30px -10px rgba(99, 102, 241, 0.45);
+}
+
+.start-hero-title {
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  color: white;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.75rem, 5.5vw, 2.75rem);
+  margin-bottom: 0.25rem;
+}
+
+.start-hero-sub {
+  font-size: clamp(0.875rem, 2.5vw, 1.05rem);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.start-sprite-scene {
+  position: relative;
+  flex-shrink: 0;
+  width: clamp(140px, 22vw, 180px);
+  height: clamp(96px, 14vw, 120px);
+}
+
+.start-card {
+  border-radius: clamp(1.25rem, 3vw, 1.75rem);
+  background: white;
+  padding: clamp(1rem, 3.5vw, 1.35rem);
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 20px rgba(60, 60, 100, 0.07);
+}
+
+.start-card-label {
+  font-size: clamp(0.7rem, 2vw, 0.75rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #9CA3AF;
+  text-align: center;
+  margin-bottom: 0.85rem;
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+}
+
+@media (min-width: 520px) {
+  .guide-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+  }
+}
+
+.guide-card {
+  border-radius: 1rem;
+  padding: clamp(0.65rem, 2vw, 0.85rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.35rem;
+}
+
+.guide-card-icon {
+  position: relative;
+  width: clamp(48px, 10vw, 56px);
+  height: clamp(48px, 10vw, 56px);
+}
+
+.guide-card-icon-sprite {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
+.guide-card-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+.guide-card-label {
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  font-size: clamp(0.7rem, 2.2vw, 0.8rem);
+  line-height: 1.2;
+  color: #1E1B4B;
+}
+
+.guide-card-sub {
+  font-size: clamp(0.65rem, 1.8vw, 0.72rem);
+  color: #9CA3AF;
+  line-height: 1.2;
+}
+
+.diff-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 520px) {
+  .diff-row {
+    flex-direction: row;
+  }
+}
+
+.diff-btn-soft {
+  flex: 1;
+  cursor: pointer;
+  border-radius: 1rem;
+  padding: clamp(1rem, 3vw, 1.15rem) clamp(1rem, 3vw, 1.25rem);
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-align: left;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  border: 2px solid transparent;
+}
+
+.diff-btn-soft:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.diff-btn-soft:active {
+  transform: scale(0.98);
+}
+
+.diff-btn-soft-easy {
+  background: #ECFDF5;
+  border-color: #6EE7B7;
+}
+
+.diff-btn-soft-hard {
+  background: #FFF7ED;
+  border-color: #FDBA74;
+}
+
+.diff-btn-soft-icon {
+  font-size: clamp(1.75rem, 5vw, 2rem);
+  line-height: 1;
+}
+
+.diff-btn-soft-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.diff-btn-soft-title {
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  font-size: clamp(1rem, 3vw, 1.15rem);
+}
+
+.diff-btn-soft-desc {
+  font-size: clamp(0.72rem, 2vw, 0.8rem);
+  color: #9CA3AF;
+  font-weight: 600;
+}
+
+.game-overlay-blur {
+  background: rgba(30, 27, 75, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.game-overlay-end {
+  background: linear-gradient(155deg, rgba(255, 251, 235, 0.96) 0%, rgba(236, 253, 245, 0.96) 45%, rgba(238, 242, 255, 0.96) 100%);
+}
+
+.game-overlay-defeat {
+  background: linear-gradient(155deg, rgba(255, 241, 242, 0.96) 0%, rgba(245, 243, 255, 0.96) 50%, rgba(238, 242, 255, 0.96) 100%);
+}
+
+.game-btn-primary {
+  width: 100%;
+  cursor: pointer;
+  border: none;
+  border-radius: 1rem;
+  padding: clamp(0.85rem, 2.8vw, 1rem) 1rem;
+  font-family: 'Baloo 2', cursive;
+  font-weight: 700;
+  font-size: clamp(1rem, 2.8vw, 1.1rem);
+  color: white;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.game-btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+.game-btn-primary:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.game-btn-secondary {
+  width: 100%;
+  cursor: pointer;
+  border: 2px solid #E5E7EB;
+  border-radius: 1rem;
+  padding: clamp(0.85rem, 2.8vw, 1rem) 1rem;
+  font-family: 'Baloo 2', cursive;
+  font-weight: 700;
+  font-size: clamp(1rem, 2.8vw, 1.1rem);
+  background: white;
+  color: #6b7280;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+
+.game-btn-secondary:hover {
+  transform: translateY(-2px);
+  background: #F9FAFB;
+}
+
+.game-btn-green {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  box-shadow: 0 4px 14px -4px rgba(34, 197, 94, 0.45);
+}
+
+.game-btn-purple {
+  background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
+  box-shadow: 0 4px 14px -4px rgba(99, 102, 241, 0.45);
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.overlay-enter {
+  animation: overlayFadeIn 0.45s ease-out both;
+}
