@@ -2181,208 +2181,149 @@ export default function App() {
           )}
         {/* START SCREEN PANEL */}
         {gameState === GameState.START && (
-          <div
-            id="start-overlay"
+          <div id="start-overlay" className="absolute inset-0 z-25 flex flex-col items-center justify-start p-3 sm:p-5 text-left overflow-y-auto"
             style={{
-              background:
-                'linear-gradient(180deg, #fff8ee 0%, #fefbf3 35%, #f6fbff 100%)',
+              background: 'linear-gradient(155deg, #EEF2FF 0%, #F5F3FF 40%, #FFF7ED 100%)',
+              fontFamily: 'system-ui, -apple-system, sans-serif',
+              color: '#1E1B4B',
             }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
           >
-            <div
-              className="relative rounded-[36px] overflow-hidden shadow-2xl"
-              style={{
-                width: 'min(1200px, 92vw)',
-                aspectRatio: '16 / 9',
-                maxHeight: '85vh',
-                border: '6px solid rgba(255,255,255,0.8)',
-                background: '#fff',
-              }}
-            >
+            <div className="w-full max-w-3xl mx-auto relative z-10 py-2">
 
-              <img
-                src={`${import.meta.env.BASE_URL}Game background.png`}
-                alt=""
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                }}
-              />
-
-              {/* Fade hòa với nền ngoài */}
-              <div
-                style={{
-                  position: 'absolute',
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  height: '220px',
-                  background:
-                    'linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,248,238,0.96))',
-                }}
-              />
-
-              {/* Bat */}
-              <img
-                src={`${import.meta.env.BASE_URL}Baby bat.png`}
-                alt=""
-                style={{
-                  position: 'absolute',
-                  top: '10%',
-                  right: '15%',
-                  width: '120px',
-                }}
-              />
-
-              <img
-                src={`${import.meta.env.BASE_URL}Big Bat.png`}
-                alt=""
-                style={{
-                  position: 'absolute',
-                  top: '20%',
-                  right: '3%',
-                  width: '180px',
-                }}
-              />
-
-              {/* Nest */}
-              <img
-                src={`${import.meta.env.BASE_URL}Nest.png`}
-                alt=""
-                style={{
-                  position: 'absolute',
-                  left: '2%',
-                  bottom: '12%',
-                  width: '320px',
-                }}
-              />
-
-              {/* Canon */}
-              <img
-                src={`${import.meta.env.BASE_URL}Canon.png`}
-                alt=""
-                style={{
-                  position: 'absolute',
-                  left: '5%',
-                  bottom: '0%',
-                  width: '180px',
-                }}
-              />
-
-              {/* Wolf */}
-              <img
-                src={`${import.meta.env.BASE_URL}Wolf.png`}
-                alt=""
-                style={{
-                  position: 'absolute',
-                  right: '-1%',
-                  bottom: '0%',
-                  width: '220px',
-                }}
-              />
-
-              {/* Center content */}
-              <div
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  textAlign: 'center',
-                  padding: '24px',
-                }}
-              >
-                <h1
-                  style={{
-                    fontSize: 'clamp(2.2rem, 5vw, 4.2rem)',
-                    fontWeight: 900,
-                    color: '#ffffff',
-                    textShadow: '0 4px 16px rgba(0,0,0,.5)',
-                    marginBottom: '12px',
-                  }}
+              {/* Breadcrumb nav - matches parent site pill style */}
+              <div className="flex items-center gap-2 mb-4 text-xs sm:text-sm font-semibold flex-wrap" style={{color: '#6D6A8C'}}>
+                <a href="https://kideschool.blogspot.com/p/tin-hoc.html"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white shadow-sm hover:shadow transition-shadow"
+                  style={{textDecoration: 'none', color: '#6D6A8C'}}
                 >
-                  🥚 BẢO VỆ TỔ TRỨNG 🪺
-                </h1>
+                  🏠 Trang chủ
+                </a>
+                <span style={{opacity: 0.5}}>›</span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full" style={{background: '#E6FCF5', color: '#0F9B8E'}}>
+                  🪺 Bảo vệ tổ chim
+                </span>
+              </div>
 
-                <div
-                  style={{
-                    background: 'rgba(255,255,255,.9)',
-                    color: '#374151',
-                    borderRadius: '24px',
-                    padding: '18px 24px',
-                    maxWidth: '700px',
-                    marginBottom: '24px',
-                    fontWeight: 700,
-                  }}
-                >
-                  🖱️ Di chuyển chuột để ngắm<br/>
-                  💥 Click trái bắn dơi<br/>
-                  🥚 Click phải làm trứng nở<br/>
-                  ⚡ Double Click cứu trứng rơi<br/>
-                  🐺 Giữ chuột và kéo để đuổi sói
+              {/* Hero card - built from real game sprites */}
+              <div className="rounded-3xl p-5 sm:p-7 mb-4 relative overflow-hidden flex items-center justify-between gap-4" style={{
+                background: 'linear-gradient(135deg, #8B5CF6 0%, #6366F1 55%, #38BDF8 100%)',
+                boxShadow: '0 12px 30px -10px rgba(99,102,241,0.45)',
+              }}>
+                <div className="relative z-10">
+                  <h1 id="main-overlay-h2" className="font-extrabold leading-tight mb-1 text-white" style={{fontSize: 'clamp(1.6rem, 5vw, 2.6rem)', letterSpacing: '-0.5px'}}>
+                    Bảo Vệ Tổ Trứng
+                  </h1>
+                  <p id="main-overlay-subtxt" className="text-sm sm:text-base font-medium" style={{color: 'rgba(255,255,255,0.92)'}}>
+                    Luyện chuột cùng chim non 🐣
+                  </p>
                 </div>
-
-                <div
-                  style={{
-                    display: 'flex',
-                    gap: '16px',
-                    flexWrap: 'wrap',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <button
-                    onClick={() => handleStartGame(Difficulty.EASY)}
-                    style={{
-                      padding: '16px 28px',
-                      borderRadius: '20px',
-                      border: 'none',
-                      fontWeight: 900,
-                      fontSize: '1.1rem',
-                      color: '#fff',
-                      background: '#22c55e',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    🌟 CHƠI DỄ
-                  </button>
-
-                  <button
-                    onClick={() => handleStartGame(Difficulty.HARD)}
-                    style={{
-                      padding: '16px 28px',
-                      borderRadius: '20px',
-                      border: 'none',
-                      fontWeight: 900,
-                      fontSize: '1.1rem',
-                      color: '#fff',
-                      background: '#ef4444',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    🔥 CHƠI KHÓ
-                  </button>
-
-                  <a
-                    href="https://kideschool.blogspot.com/2026/06/mouse.html "
-                    style={{
-                      padding: '16px 28px',
-                      borderRadius: '20px',
-                      fontWeight: 900,
-                      fontSize: '1.1rem',
-                      color: '#fff',
-                      background: '#64748b',
-                      textDecoration: 'none',
-                    }}
-                  >
-                    🚪 EXIT
-                  </a>
+                {/* Nest with eggs + flying bird, made from real sprites */}
+                <div className="relative shrink-0 hidden sm:block" style={{width: '160px', height: '110px'}}>
+                  {/* Nest.png is 2400x1200, frame 0 (top nest) = 1200x1200 */}
+                  <div style={{
+                    position: 'absolute', bottom: 0, left: 0, width: '160px', height: '80px',
+                    backgroundImage: `url('${import.meta.env.BASE_URL}Nest.png')`,
+                    backgroundSize: '320px 160px', backgroundPosition: '0px 0px', backgroundRepeat: 'no-repeat',
+                  }} />
+                  {/* Egg.png is 2400x600, 4 frames of 600x600 */}
+                  <div style={{
+                    position: 'absolute', bottom: '30px', left: '22px', width: '36px', height: '36px',
+                    backgroundImage: `url('${import.meta.env.BASE_URL}Egg.png')`,
+                    backgroundSize: '144px 36px', backgroundPosition: '0px 0px', backgroundRepeat: 'no-repeat',
+                  }} />
+                  <div style={{
+                    position: 'absolute', bottom: '26px', left: '58px', width: '40px', height: '40px',
+                    backgroundImage: `url('${import.meta.env.BASE_URL}Egg.png')`,
+                    backgroundSize: '160px 40px', backgroundPosition: '-40px 0px', backgroundRepeat: 'no-repeat',
+                  }} />
+                  <div style={{
+                    position: 'absolute', bottom: '32px', left: '98px', width: '30px', height: '30px',
+                    backgroundImage: `url('${import.meta.env.BASE_URL}Egg.png')`,
+                    backgroundSize: '120px 30px', backgroundPosition: '0px 0px', backgroundRepeat: 'no-repeat',
+                  }} />
+                  {/* Bird.png is 1400x350, 4 frames of 350x350 */}
+                  <div className="animate-bounce" style={{
+                    position: 'absolute', top: 0, right: '4px', width: '60px', height: '60px',
+                    backgroundImage: `url('${import.meta.env.BASE_URL}Bird.png')`,
+                    backgroundSize: '240px 60px', backgroundPosition: '0px 0px', backgroundRepeat: 'no-repeat',
+                    animationDuration: '1.4s',
+                  }} />
                 </div>
               </div>
+
+              {/* HOW TO PLAY - visual icon grid using real mouse-click sprite */}
+              <div className="rounded-3xl bg-white p-4 sm:p-5 mb-4 shadow-sm">
+                <div className="text-xs font-bold uppercase tracking-widest mb-3 text-center" style={{color: '#9CA3AF'}}>
+                  Cách chơi
+                </div>
+                <div className="grid grid-cols-5 gap-2">
+                  {[
+                    { bgPos: '0px 0px', label: 'Di chuột', sub: 'Ngắm', bg: '#EFF6FF' },
+                    { bgPos: '-46px 0px', label: 'Click trái', sub: 'Bắn', bg: '#FFFBEB' },
+                    { bgPos: '-92px 0px', label: 'Click phải', sub: 'Ấp trứng', bg: '#ECFDF5' },
+                    { bgPos: '-46px 0px', label: '2x Click', sub: 'Nhặt trứng', bg: '#FDF2F8', badge: '✌️' },
+                    { bgPos: '-46px 0px', label: 'Giữ & kéo', sub: 'Đuổi sói', bg: '#F5F3FF', badge: '👉' },
+                  ].map((s, i) => (
+                    <div key={i} className="rounded-2xl p-2 flex flex-col items-center text-center gap-1" style={{background: s.bg}}>
+                      <div className="relative" style={{width: '46px', height: '46px'}}>
+                        <div style={{
+                          width: '46px', height: '46px',
+                          backgroundImage: `url('${import.meta.env.BASE_URL}Mouse Click.png')`,
+                          backgroundSize: '138px 46px',
+                          backgroundPosition: s.bgPos,
+                          backgroundRepeat: 'no-repeat',
+                        }} />
+                        {s.badge && (
+                          <span className="absolute -top-1 -right-1 text-xs leading-none">{s.badge}</span>
+                        )}
+                      </div>
+                      <div className="font-extrabold text-[11px] sm:text-xs leading-tight" style={{color: '#1E1B4B'}}>{s.label}</div>
+                      <div className="text-[10px] leading-tight" style={{color: '#9CA3AF'}}>{s.sub}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Difficulty select */}
+              <div className="rounded-3xl bg-white p-4 sm:p-5 mb-4 shadow-sm">
+                <div id="diff-select" className="flex flex-col sm:flex-row gap-3">
+                  <button
+                    id="btn-level-easy"
+                    onClick={() => handleStartGame(Difficulty.EASY)}
+                    className="flex-1 cursor-pointer active:scale-95 transition-all text-left rounded-2xl p-4 flex items-center gap-3"
+                    style={{
+                      background: '#ECFDF5',
+                      border: '2px solid #6EE7B7',
+                    }}
+                    onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
+                    onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+                  >
+                    <span className="text-3xl">🌟</span>
+                    <span className="font-extrabold text-base" style={{color: '#047857'}}>Chơi dễ</span>
+                  </button>
+
+                  <button
+                    id="btn-level-hard"
+                    onClick={() => handleStartGame(Difficulty.HARD)}
+                    className="flex-1 cursor-pointer active:scale-95 transition-all text-left rounded-2xl p-4 flex items-center gap-3"
+                    style={{
+                      background: '#FFF7ED',
+                      border: '2px solid #FDBA74',
+                    }}
+                    onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
+                    onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+                  >
+                    <span className="text-3xl">🔥</span>
+                    <span className="font-extrabold text-base" style={{color: '#C2410C'}}>Chơi khó</span>
+                  </button>
+                </div>
+              </div>
+
+              {highScore > 0 && (
+                <div className="text-center text-sm font-semibold mb-2" style={{color: '#9CA3AF'}}>
+                  🏅 Điểm cao nhất: <span style={{color: '#F59E0B'}}>{highScore}</span>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -2390,26 +2331,17 @@ export default function App() {
         {/* PAUSED SCREEN PANEL */}
         {gameState === GameState.PAUSED && (
           <div id="pause-overlay" onContextMenu={(e) => e.preventDefault()} className="absolute inset-0 z-40 flex flex-col items-center justify-center p-6 text-center"
-            style={{background: 'rgba(10,5,30,0.88)', backdropFilter: 'blur(6px)'}}
+            style={{background: 'rgba(30,27,75,0.45)', backdropFilter: 'blur(6px)', fontFamily: 'system-ui, -apple-system, sans-serif'}}
           >
-            <div className="rounded-3xl p-8 max-w-sm w-full shadow-2xl" style={{
-              background: 'linear-gradient(160deg, #1e1040 0%, #0d2040 100%)',
-              border: '3px solid rgba(255,255,255,0.15)',
-              boxShadow: '0 0 60px rgba(139,92,246,0.3)',
-            }}>
-              <div className="text-6xl mb-4 animate-bounce" style={{animationDuration: '1.5s'}}>⏸️</div>
+            <div className="rounded-3xl p-8 max-w-sm w-full shadow-2xl bg-white" style={{color: '#1E1B4B'}}>
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl" style={{background: '#F5F3FF'}}>
+                ⏸️
+              </div>
 
-              <h2 id="pause-h2" className="text-3xl font-extrabold mb-2"
-                style={{
-                  background: 'linear-gradient(135deg, #fbbf24, #f472b6)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
-                Tạm Dừng! 😴
+              <h2 id="pause-h2" className="text-2xl font-extrabold mb-1" style={{color: '#6366F1'}}>
+                Tạm dừng
               </h2>
-              <p id="pause-p" className="text-sm mb-6" style={{color: 'rgba(200,200,255,0.75)'}}>
+              <p id="pause-p" className="text-sm mb-6" style={{color: '#9CA3AF'}}>
                 Bé hãy nghỉ ngơi một chút nhé! 🌙
               </p>
 
@@ -2417,45 +2349,29 @@ export default function App() {
                 <button
                   id="resume-btn"
                   onClick={() => handleResume()}
-                  className="w-full cursor-pointer active:scale-95 transition-all"
+                  className="w-full cursor-pointer active:scale-95 transition-all rounded-2xl py-3.5 font-extrabold text-base text-white"
                   style={{
-                    padding: '14px 24px',
-                    borderRadius: '18px',
-                    fontWeight: '900',
-                    fontSize: '1.1rem',
-                    color: 'white',
                     background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
-                    border: '3px solid rgba(255,255,255,0.35)',
-                    boxShadow: '0 5px 0 #15803d, 0 6px 16px rgba(34,197,94,0.4)',
-                    textShadow: '0 2px 4px rgba(0,0,0,0.3)',
-                    letterSpacing: '0.5px',
+                    boxShadow: '0 4px 14px -4px rgba(34,197,94,0.5)',
                   }}
                   onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
                   onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
                 >
-                  ▶️ TIẾP TỤC CHƠI!
+                  ▶️ Tiếp tục chơi
                 </button>
 
                 <button
                   id="exit-btn"
                   onClick={() => handleExit()}
-                  className="w-full cursor-pointer active:scale-95 transition-all"
+                  className="w-full cursor-pointer active:scale-95 transition-all rounded-2xl py-3.5 font-extrabold text-base"
                   style={{
-                    padding: '14px 24px',
-                    borderRadius: '18px',
-                    fontWeight: '900',
-                    fontSize: '1.1rem',
-                    color: 'white',
-                    background: 'linear-gradient(135deg, #f87171 0%, #dc2626 100%)',
-                    border: '3px solid rgba(255,255,255,0.25)',
-                    boxShadow: '0 5px 0 #991b1b, 0 6px 16px rgba(239,68,68,0.3)',
-                    textShadow: '0 2px 4px rgba(0,0,0,0.3)',
-                    letterSpacing: '0.5px',
+                    background: '#F3F4F6',
+                    color: '#6B7280',
                   }}
                   onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
                   onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
                 >
-                  🏠 THOÁT GAME
+                  🏠 Thoát game
                 </button>
               </div>
             </div>
@@ -2464,44 +2380,59 @@ export default function App() {
 
         {/* DEFEAT SCREEN PANEL */}
         {gameState === GameState.DEFEAT && (
-          <div id="defeat-overlay" onContextMenu={(e) => e.preventDefault()} className="absolute inset-0 bg-slate-950/95 z-25 flex flex-col items-center justify-center p-6 text-center">
-            <div className="w-20 h-20 bg-rose-500/20 rounded-full flex items-center justify-center mb-6 border border-rose-500/40 animate-pulse">
-              <div className="w-12 h-16 bg-slate-600 rounded-[50%/60%_60%_40%_40%] flex items-center justify-center border-b-4 border-slate-800">
-                <span className="text-2xl font-bold text-slate-400 font-mono">X_X</span>
+          <div id="defeat-overlay" onContextMenu={(e) => e.preventDefault()}
+            className="absolute inset-0 z-25 flex flex-col items-center justify-center p-4 text-center overflow-y-auto"
+            style={{
+              background: 'linear-gradient(155deg, #FFF1F2 0%, #F5F3FF 50%, #EEF2FF 100%)',
+              fontFamily: 'system-ui, -apple-system, sans-serif',
+              color: '#1E1B4B',
+            }}
+          >
+            <div className="max-w-sm w-full">
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 text-3xl" style={{background: '#FFE4E6'}}>
+                😿
               </div>
+
+              <h2 id="defeat-h2" className="text-2xl sm:text-3xl font-extrabold mb-2" style={{color: '#E11D48'}}>
+                Trứng đã bị mang đi hết!
+              </h2>
+              <p id="defeat-p" className="text-sm mb-5 leading-relaxed" style={{color: '#6B7280'}}>
+                Dơi và sói đã lấy hết trứng trong tổ rồi. Bé hãy thử lại để bảo vệ tốt hơn nhé! 💪
+              </p>
+
+              <div className="rounded-3xl bg-white p-4 mb-5 shadow-sm text-left space-y-2.5 text-sm">
+                <div className="text-xs font-bold uppercase tracking-widest mb-1 text-center" style={{color: '#9CA3AF'}}>
+                  📊 Thống kê trận đấu
+                </div>
+                <div className="flex justify-between items-center">
+                  <span style={{color: '#6B7280'}}>🎯 Bắn trúng dơi</span>
+                  <span className="font-extrabold" style={{color: '#14B8A6'}}>{stats.batHits} lần</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span style={{color: '#6B7280'}}>💨 Bắn hụt</span>
+                  <span className="font-extrabold" style={{color: '#F472B6'}}>{stats.missedShots} lần</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span style={{color: '#6B7280'}}>🐣 Chim nở thành công</span>
+                  <span className="font-extrabold" style={{color: '#3B82F6'}}>{stats.birdsRescued} chú</span>
+                </div>
+              </div>
+
+              <button
+                id="restart-defeat-btn"
+                onClick={() => setGameState(GameState.START)}
+                className="w-full cursor-pointer active:scale-95 transition-all rounded-2xl py-3.5 font-extrabold text-base text-white flex items-center justify-center gap-2"
+                style={{
+                  background: 'linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)',
+                  boxShadow: '0 4px 14px -4px rgba(99,102,241,0.5)',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
+                onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+              >
+                <RotateCcw className="w-5 h-5" />
+                Cho bé chơi lại
+              </button>
             </div>
-
-            <h2 id="defeat-h2" className="text-3xl md:text-5xl font-extrabold text-white mb-2 tracking-tight">
-              Tất Cả Trứng Đã Bị Trộm!
-            </h2>
-            <p id="defeat-p" className="text-sm md:text-base text-rose-200/80 max-w-md mb-6 leading-relaxed">
-              Dơi đen và sói rừng đã mang tất cả những quả trứng đi mất rồi. Bé hãy thử lại một lần nữa để bảo vệ tốt hơn nhé!
-            </p>
-
-            <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 mb-6 font-mono max-w-sm w-full text-left space-y-2 text-sm">
-              <div className="text-xs text-slate-500 uppercase tracking-widest mb-1.5 text-center font-bold">Thống Kê Trận Đấu</div>
-              <div className="flex justify-between text-slate-300">
-                <span>🎯 Bắn trúng dơi:</span>
-                <span className="font-extrabold text-emerald-400">{stats.batHits} lần</span>
-              </div>
-              <div className="flex justify-between text-slate-300">
-                <span>💨 Bắn hụt:</span>
-                <span className="font-extrabold text-rose-400">{stats.missedShots} lần</span>
-              </div>
-              <div className="flex justify-between text-slate-300">
-                <span>🐣 Cứu được chú chim:</span>
-                <span className="font-extrabold text-blue-400">{stats.birdsRescued} chú</span>
-              </div>
-            </div>
-
-            <button
-              id="restart-defeat-btn"
-              onClick={() => setGameState(GameState.START)}
-              className="py-4 px-8 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl hover:from-blue-400 hover:to-indigo-500 font-bold text-white shadow-xl hover:scale-103 transition-transform text-lg flex items-center gap-2 cursor-pointer active:scale-95"
-            >
-              <RotateCcw className="w-5 h-5" />
-              CHO BÉ CHƠI LẠI
-            </button>
           </div>
         )}
 
@@ -2509,7 +2440,11 @@ export default function App() {
         {gameState === GameState.VICTORY && showVictoryScreen && (
           <div id="victory-overlay" onContextMenu={(e) => e.preventDefault()}
             className="absolute inset-0 z-25 flex flex-col items-center justify-center p-4 text-center overflow-y-auto"
-            style={{background: 'linear-gradient(160deg, #0d1b2a 0%, #0a2e1a 40%, #1a1a0a 70%, #1a0a2e 100%)'}}
+            style={{
+              background: 'linear-gradient(155deg, #FFFBEB 0%, #ECFDF5 45%, #EEF2FF 100%)',
+              fontFamily: 'system-ui, -apple-system, sans-serif',
+              color: '#1E1B4B',
+            }}
           >
             {/* Floating confetti */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -2520,7 +2455,7 @@ export default function App() {
                   animationDelay: `${i * 0.2}s`,
                   animationDuration: `${1.2 + (i % 4) * 0.4}s`,
                   fontSize: `${1.2 + (i % 3) * 0.6}rem`,
-                  opacity: 0.7,
+                  opacity: 0.6,
                 }}>{s}</span>
               ))}
             </div>
@@ -2528,62 +2463,52 @@ export default function App() {
             <div className="relative z-10 max-w-sm w-full">
               {/* Trophy + birds celebration */}
               <div className="relative flex items-end justify-center gap-2 mb-3">
-                <span className="text-4xl animate-bounce" style={{animationDelay: '0.1s'}}>🐦</span>
+                <div className="animate-bounce" style={{
+                  width: '60px', height: '60px',
+                  backgroundImage: `url('${import.meta.env.BASE_URL}Bird.png')`,
+                  backgroundSize: '240px 60px', backgroundPosition: '0px 0px', backgroundRepeat: 'no-repeat',
+                  animationDelay: '0.1s',
+                }} />
                 <div className="relative">
-                  <div className="text-7xl animate-bounce" style={{animationDuration: '0.8s', filter: 'drop-shadow(0 0 20px rgba(255,215,0,0.8))'}}>🏆</div>
+                  <div className="text-7xl animate-bounce" style={{animationDuration: '0.8s', filter: 'drop-shadow(0 6px 14px rgba(245,158,11,0.4))'}}>🏆</div>
                   <span className="absolute -top-1 -right-2 text-xl animate-spin" style={{animationDuration: '2s'}}>✨</span>
                 </div>
-                <span className="text-4xl animate-bounce" style={{animationDelay: '0.2s'}}>🐤</span>
+                <div className="animate-bounce" style={{
+                  width: '60px', height: '60px', transform: 'scaleX(-1)',
+                  backgroundImage: `url('${import.meta.env.BASE_URL}Bird.png')`,
+                  backgroundSize: '240px 60px', backgroundPosition: '-180px 0px', backgroundRepeat: 'no-repeat',
+                  animationDelay: '0.2s',
+                }} />
               </div>
 
               {/* Title */}
-              <h2 id="victory-h2" className="font-extrabold leading-tight mb-1"
-                style={{
-                  fontSize: 'clamp(1.8rem, 5vw, 2.8rem)',
-                  background: 'linear-gradient(135deg, #FFD700 0%, #FF6B35 40%, #FF4081 80%, #E040FB 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  filter: 'drop-shadow(0 2px 8px rgba(255,107,53,0.4))',
-                }}
-              >
-                BÉ THẮNG RỒI! 🎉
+              <h2 id="victory-h2" className="font-extrabold leading-tight mb-1" style={{fontSize: 'clamp(1.6rem, 5vw, 2.4rem)', color: '#16A34A'}}>
+                Bé thắng rồi! 🎉
               </h2>
-              <p id="victory-p" className="text-sm font-bold mb-4" style={{color: '#a5f3fc', textShadow: '0 0 8px rgba(165,243,252,0.4)'}}>
+              <p id="victory-p" className="text-sm font-medium mb-4" style={{color: '#6B7280'}}>
                 Tất cả chim non đã nở an toàn! Bé giỏi lắm! 🐣
               </p>
 
               {/* Score big display */}
-              <div className="rounded-3xl p-4 mb-3 shadow-2xl" style={{
-                background: 'rgba(255,255,255,0.07)',
-                border: '2px solid rgba(255,215,0,0.35)',
-                backdropFilter: 'blur(10px)',
-              }}>
-                <div className="text-xs font-bold uppercase tracking-widest mb-1" style={{color: 'rgba(255,255,255,0.5)'}}>⭐ Điểm của bé ⭐</div>
+              <div className="rounded-3xl bg-white p-4 mb-3 shadow-sm">
+                <div className="text-xs font-bold uppercase tracking-widest mb-1" style={{color: '#9CA3AF'}}>⭐ Điểm của bé</div>
                 <div className="font-extrabold mb-3" style={{
-                  fontSize: 'clamp(2.5rem, 8vw, 4rem)',
-                  background: 'linear-gradient(135deg, #FFD700, #FFA500)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  filter: 'drop-shadow(0 2px 10px rgba(255,165,0,0.6))',
+                  fontSize: 'clamp(2.5rem, 8vw, 3.5rem)',
+                  color: '#F59E0B',
                   lineHeight: 1,
                 }}>{score}</div>
 
                 {/* Stats row */}
                 <div className="grid grid-cols-3 gap-2">
                   {[
-                    { icon: '🎯', label: 'Bắn trúng', value: stats.batHits, color: '#34d399' },
-                    { icon: '🐣', label: 'Chim nở', value: stats.birdsRescued, color: '#60a5fa' },
-                    { icon: '💨', label: 'Bắn hụt', value: stats.missedShots, color: '#fbbf24' },
+                    { icon: '🎯', label: 'Bắn trúng', value: stats.batHits, color: '#14B8A6', bg: '#ECFDF5' },
+                    { icon: '🐣', label: 'Chim nở', value: stats.birdsRescued, color: '#3B82F6', bg: '#EFF6FF' },
+                    { icon: '💨', label: 'Bắn hụt', value: stats.missedShots, color: '#F472B6', bg: '#FDF2F8' },
                   ].map((s, i) => (
-                    <div key={i} className="rounded-2xl p-2 text-center" style={{
-                      background: 'rgba(255,255,255,0.06)',
-                      border: `1.5px solid ${s.color}44`,
-                    }}>
+                    <div key={i} className="rounded-2xl p-2 text-center" style={{background: s.bg}}>
                       <div className="text-xl mb-0.5">{s.icon}</div>
                       <div className="font-extrabold text-lg" style={{color: s.color}}>{s.value}</div>
-                      <div className="text-xs" style={{color: 'rgba(255,255,255,0.5)'}}>{s.label}</div>
+                      <div className="text-xs" style={{color: '#9CA3AF'}}>{s.label}</div>
                     </div>
                   ))}
                 </div>
@@ -2591,12 +2516,12 @@ export default function App() {
 
               {/* High score badge if applicable */}
               {score >= highScore && score > 0 && (
-                <div className="rounded-2xl py-2 px-4 mb-3 text-sm font-bold animate-pulse" style={{
-                  background: 'linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,165,0,0.15))',
-                  border: '1.5px solid rgba(255,215,0,0.5)',
-                  color: '#FFD700',
+                <div className="rounded-2xl py-2 px-4 mb-3 text-sm font-bold" style={{
+                  background: '#FFFBEB',
+                  border: '1.5px solid #FDE68A',
+                  color: '#D97706',
                 }}>
-                  🏅 KỶ LỤC MỚI CỦA BÉ! 🏅
+                  🏅 Kỷ lục mới của bé!
                 </div>
               )}
 
@@ -2604,23 +2529,15 @@ export default function App() {
               <button
                 id="restart-victory-btn"
                 onClick={() => setGameState(GameState.START)}
-                className="w-full cursor-pointer active:scale-95 transition-all"
+                className="w-full cursor-pointer active:scale-95 transition-all rounded-2xl py-3.5 font-extrabold text-base text-white"
                 style={{
-                  padding: '16px 24px',
-                  borderRadius: '20px',
-                  fontWeight: '900',
-                  fontSize: '1.15rem',
-                  color: 'white',
                   background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
-                  border: '3px solid rgba(255,255,255,0.4)',
-                  boxShadow: '0 6px 0 #15803d, 0 8px 20px rgba(34,197,94,0.4)',
-                  textShadow: '0 2px 4px rgba(0,0,0,0.3)',
-                  letterSpacing: '0.5px',
+                  boxShadow: '0 4px 14px -4px rgba(34,197,94,0.5)',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)')}
-                onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0) scale(1)')}
+                onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
+                onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
               >
-                🔄 CHƠI LẠI VÁN MỚI!
+                🔄 Chơi lại ván mới!
               </button>
             </div>
           </div>
