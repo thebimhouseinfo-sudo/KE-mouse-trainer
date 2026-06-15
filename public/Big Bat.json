@@ -1,0 +1,215 @@
+{
+  "frames": [
+    {
+      "filename": "fly_frame_1",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 800,
+        "h": 800
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 800,
+        "h": 800
+      },
+      "sourceSize": {
+        "w": 800,
+        "h": 800
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    },
+    {
+      "filename": "fly_frame_1",
+      "frame": {
+        "x": 800,
+        "y": 0,
+        "w": 800,
+        "h": 800
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 800,
+        "h": 800
+      },
+      "sourceSize": {
+        "w": 800,
+        "h": 800
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    },
+    {
+      "filename": "fly_frame_2",
+      "frame": {
+        "x": 1600,
+        "y": 0,
+        "w": 800,
+        "h": 800
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 800,
+        "h": 800
+      },
+      "sourceSize": {
+        "w": 800,
+        "h": 800
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    },
+    {
+      "filename": "fly_frame_3",
+      "frame": {
+        "x": 2400,
+        "y": 0,
+        "w": 800,
+        "h": 800
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 800,
+        "h": 800
+      },
+      "sourceSize": {
+        "w": 800,
+        "h": 800
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    },
+    {
+      "filename": "fly_with_egg_frame_0",
+      "frame": {
+        "x": 0,
+        "y": 800,
+        "w": 800,
+        "h": 800
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 800,
+        "h": 800
+      },
+      "sourceSize": {
+        "w": 800,
+        "h": 800
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    },
+    {
+      "filename": "fly_with_egg_frame_1",
+      "frame": {
+        "x": 800,
+        "y": 800,
+        "w": 800,
+        "h": 800
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 800,
+        "h": 800
+      },
+      "sourceSize": {
+        "w": 800,
+        "h": 800
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    },
+    {
+      "filename": "fly_with_egg_frame_2",
+      "frame": {
+        "x": 1600,
+        "y": 800,
+        "w": 800,
+        "h": 800
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 800,
+        "h": 800
+      },
+      "sourceSize": {
+        "w": 800,
+        "h": 800
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    },
+    {
+      "filename": "fly_with_egg_frame_3",
+      "frame": {
+        "x": 2400,
+        "y": 800,
+        "w": 800,
+        "h": 800
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 800,
+        "h": 800
+      },
+      "sourceSize": {
+        "w": 800,
+        "h": 800
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    }
+  ],
+  "meta": {
+    "app": "Spritesheet Tool Pro",
+    "version": "1.0.0",
+    "image": "Big Bat.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 3200,
+      "h": 1600
+    },
+    "scale": 1
+  }
+}

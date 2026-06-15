@@ -1,0 +1,65 @@
+{
+  "frames": [
+    {
+      "filename": "Full nest",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 1200,
+        "h": 1200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1200,
+        "h": 1200
+      },
+      "sourceSize": {
+        "w": 1200,
+        "h": 1200
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    },
+    {
+      "filename": "Front nest",
+      "frame": {
+        "x": 1200,
+        "y": 0,
+        "w": 1200,
+        "h": 1200
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1200,
+        "h": 1200
+      },
+      "sourceSize": {
+        "w": 1200,
+        "h": 1200
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    }
+  ],
+  "meta": {
+    "app": "Spritesheet Tool Pro",
+    "version": "1.0.0",
+    "image": "Nest.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 2400,
+      "h": 1200
+    },
+    "scale": 1
+  }
+}

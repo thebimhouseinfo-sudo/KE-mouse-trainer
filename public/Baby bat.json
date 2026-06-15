@@ -1,0 +1,115 @@
+{
+  "frames": [
+    {
+      "filename": "frame_0",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 680,
+        "h": 680
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 680,
+        "h": 680
+      },
+      "sourceSize": {
+        "w": 680,
+        "h": 680
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    },
+    {
+      "filename": "frame_1",
+      "frame": {
+        "x": 680,
+        "y": 0,
+        "w": 680,
+        "h": 680
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 680,
+        "h": 680
+      },
+      "sourceSize": {
+        "w": 680,
+        "h": 680
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    },
+    {
+      "filename": "frame_2",
+      "frame": {
+        "x": 1360,
+        "y": 0,
+        "w": 680,
+        "h": 680
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 680,
+        "h": 680
+      },
+      "sourceSize": {
+        "w": 680,
+        "h": 680
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    },
+    {
+      "filename": "frame_3",
+      "frame": {
+        "x": 2040,
+        "y": 0,
+        "w": 680,
+        "h": 680
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 680,
+        "h": 680
+      },
+      "sourceSize": {
+        "w": 680,
+        "h": 680
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    }
+  ],
+  "meta": {
+    "app": "Spritesheet Tool Pro",
+    "version": "1.0.0",
+    "image": "Baby bat.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 2720,
+      "h": 680
+    },
+    "scale": 1
+  }
+}

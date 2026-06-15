@@ -1,0 +1,115 @@
+{
+  "frames": [
+    {
+      "filename": "frame_0",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 350
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    },
+    {
+      "filename": "frame_1",
+      "frame": {
+        "x": 350,
+        "y": 0,
+        "w": 350,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 350
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    },
+    {
+      "filename": "frame_2",
+      "frame": {
+        "x": 700,
+        "y": 0,
+        "w": 350,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 350
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    },
+    {
+      "filename": "frame_3",
+      "frame": {
+        "x": 1050,
+        "y": 0,
+        "w": 350,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 350,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 350,
+        "h": 350
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    }
+  ],
+  "meta": {
+    "app": "Spritesheet Tool Pro",
+    "version": "1.0.0",
+    "image": "Bird.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1400,
+      "h": 350
+    },
+    "scale": 1
+  }
+}

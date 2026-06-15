@@ -1,0 +1,6 @@
+{
+  "name": "Toddler Mouse Trainer: Protect the Nest",
+  "description": "An interactive educational game helping children learn essential mouse skills: move, left-click, right-click, double-click, and drag.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

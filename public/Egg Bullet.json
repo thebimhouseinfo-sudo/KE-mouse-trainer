@@ -1,0 +1,140 @@
+{
+  "frames": [
+    {
+      "filename": "frame_0",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 300
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 300
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 300
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    },
+    {
+      "filename": "frame_1",
+      "frame": {
+        "x": 300,
+        "y": 0,
+        "w": 300,
+        "h": 300
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 300
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 300
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    },
+    {
+      "filename": "frame_2",
+      "frame": {
+        "x": 600,
+        "y": 0,
+        "w": 300,
+        "h": 300
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 300
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 300
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    },
+    {
+      "filename": "frame_3",
+      "frame": {
+        "x": 900,
+        "y": 0,
+        "w": 300,
+        "h": 300
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 300
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 300
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    },
+    {
+      "filename": "frame_4",
+      "frame": {
+        "x": 1200,
+        "y": 0,
+        "w": 300,
+        "h": 300
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 300
+      },
+      "sourceSize": {
+        "w": 300,
+        "h": 300
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    }
+  ],
+  "meta": {
+    "app": "Spritesheet Tool Pro",
+    "version": "1.0.0",
+    "image": "Egg Bullet.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1500,
+      "h": 300
+    },
+    "scale": 1
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "frames": [
+    {
+      "filename": "Normal",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 700,
+        "h": 1050
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 700,
+        "h": 1050
+      },
+      "sourceSize": {
+        "w": 700,
+        "h": 1050
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    },
+    {
+      "filename": "Fire",
+      "frame": {
+        "x": 700,
+        "y": 0,
+        "w": 700,
+        "h": 1050
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 700,
+        "h": 1050
+      },
+      "sourceSize": {
+        "w": 700,
+        "h": 1050
+      },
+      "custom": {
+        "scale": 1,
+        "rotation": 0
+      }
+    }
+  ],
+  "meta": {
+    "app": "Spritesheet Tool Pro",
+    "version": "1.0.0",
+    "image": "Canon.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1400,
+      "h": 1050
+    },
+    "scale": 1
+  }
+}
