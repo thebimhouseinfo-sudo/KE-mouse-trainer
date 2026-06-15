@@ -2204,51 +2204,23 @@ export default function App() {
                 </span>
               </div>
 
-              {/* Hero card - built from real game sprites */}
-              <div className="rounded-3xl p-5 sm:p-7 mb-4 relative overflow-hidden flex items-center justify-between gap-4" style={{
+              {/* Hero section with logo */}
+              <div className="rounded-3xl p-5 sm:p-7 mb-4 relative overflow-hidden flex flex-col items-center justify-center gap-4" style={{
                 background: 'linear-gradient(135deg, #8B5CF6 0%, #6366F1 55%, #38BDF8 100%)',
                 boxShadow: '0 12px 30px -10px rgba(99,102,241,0.45)',
               }}>
-                <div className="relative z-10">
-                  <h1 id="main-overlay-h2" className="font-extrabold leading-tight mb-1 text-white" style={{fontSize: 'clamp(1.6rem, 5vw, 2.6rem)', letterSpacing: '-0.5px'}}>
-                    Bảo Vệ Tổ Trứng
-                  </h1>
-                  <p id="main-overlay-subtxt" className="text-sm sm:text-base font-medium" style={{color: 'rgba(255,255,255,0.92)'}}>
-                    Luyện chuột cùng chim non 🐣
-                  </p>
-                </div>
-                {/* Nest with eggs + flying bird, made from real sprites */}
-                <div className="relative shrink-0 hidden sm:block" style={{width: '160px', height: '110px'}}>
-                  {/* Nest.png is 2400x1200, frame 0 (top nest) = 1200x1200 */}
-                  <div style={{
-                    position: 'absolute', bottom: 0, left: 0, width: '160px', height: '80px',
-                    backgroundImage: `url('${import.meta.env.BASE_URL}Nest.png')`,
-                    backgroundSize: '320px 160px', backgroundPosition: '0px 0px', backgroundRepeat: 'no-repeat',
-                  }} />
-                  {/* Egg.png is 2400x600, 4 frames of 600x600 */}
-                  <div style={{
-                    position: 'absolute', bottom: '30px', left: '22px', width: '36px', height: '36px',
-                    backgroundImage: `url('${import.meta.env.BASE_URL}Egg.png')`,
-                    backgroundSize: '144px 36px', backgroundPosition: '0px 0px', backgroundRepeat: 'no-repeat',
-                  }} />
-                  <div style={{
-                    position: 'absolute', bottom: '26px', left: '58px', width: '40px', height: '40px',
-                    backgroundImage: `url('${import.meta.env.BASE_URL}Egg.png')`,
-                    backgroundSize: '160px 40px', backgroundPosition: '-40px 0px', backgroundRepeat: 'no-repeat',
-                  }} />
-                  <div style={{
-                    position: 'absolute', bottom: '32px', left: '98px', width: '30px', height: '30px',
-                    backgroundImage: `url('${import.meta.env.BASE_URL}Egg.png')`,
-                    backgroundSize: '120px 30px', backgroundPosition: '0px 0px', backgroundRepeat: 'no-repeat',
-                  }} />
-                  {/* Bird.png is 1400x350, 4 frames of 350x350 */}
-                  <div className="animate-bounce" style={{
-                    position: 'absolute', top: 0, right: '4px', width: '60px', height: '60px',
-                    backgroundImage: `url('${import.meta.env.BASE_URL}Bird.png')`,
-                    backgroundSize: '240px 60px', backgroundPosition: '0px 0px', backgroundRepeat: 'no-repeat',
-                    animationDuration: '1.4s',
-                  }} />
-                </div>
+                {/* Logo image */}
+                <img 
+                  src={`${import.meta.env.BASE_URL}logo.png`} 
+                  alt="Bảo Vệ Tổ Trứng"
+                  className="max-w-[280px] sm:max-w-[350px] md:max-w-[420px] h-auto drop-shadow-2xl"
+                  style={{
+                    filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.3))',
+                  }}
+                />
+                <p className="text-base sm:text-lg font-medium text-center" style={{color: 'rgba(255,255,255,0.95)'}}>
+                  Luyện chuột cùng chim non 🐣
+                </p>
               </div>
 
               {/* HOW TO PLAY - visual icon grid using real mouse-click sprite */}
@@ -2284,37 +2256,63 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Difficulty select */}
+              {/* Difficulty select - Game-style buttons */}
               <div className="rounded-3xl bg-white p-4 sm:p-5 mb-4 shadow-sm">
-                <div id="diff-select" className="flex flex-col sm:flex-row gap-3">
+                <div id="diff-select" className="flex flex-col sm:flex-row gap-4 justify-center">
                   <button
                     id="btn-level-easy"
                     onClick={() => handleStartGame(Difficulty.EASY)}
-                    className="flex-1 cursor-pointer active:scale-95 transition-all text-left rounded-2xl p-4 flex items-center gap-3"
+                    className="flex-1 cursor-pointer transition-all text-center rounded-2xl p-5 flex flex-col items-center gap-2 relative overflow-hidden group"
                     style={{
-                      background: '#ECFDF5',
-                      border: '2px solid #6EE7B7',
+                      background: 'linear-gradient(180deg, #34D399 0%, #059669 100%)',
+                      border: 'none',
+                      boxShadow: '0 6px 0 #047857, 0 10px 20px rgba(0,0,0,0.2)',
+                      transform: 'translateY(0)',
                     }}
-                    onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
-                    onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.transform = 'translateY(-3px)';
+                      e.currentTarget.style.boxShadow = '0 9px 0 #047857, 0 15px 25px rgba(0,0,0,0.25)';
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 6px 0 #047857, 0 10px 20px rgba(0,0,0,0.2)';
+                    }}
+                    onMouseDown={e => {
+                      e.currentTarget.style.transform = 'translateY(3px)';
+                      e.currentTarget.style.boxShadow = '0 3px 0 #047857, 0 5px 10px rgba(0,0,0,0.15)';
+                    }}
                   >
-                    <span className="text-3xl">🌟</span>
-                    <span className="font-extrabold text-base" style={{color: '#047857'}}>Chơi dễ</span>
+                    <span className="text-5xl drop-shadow-lg group-hover:scale-110 transition-transform">🌟</span>
+                    <span className="font-extrabold text-xl text-white tracking-wide drop-shadow-md">CHƠI DỄ</span>
+                    <span className="text-xs text-white/90 font-medium">Dành cho bé mới tập</span>
                   </button>
 
                   <button
                     id="btn-level-hard"
                     onClick={() => handleStartGame(Difficulty.HARD)}
-                    className="flex-1 cursor-pointer active:scale-95 transition-all text-left rounded-2xl p-4 flex items-center gap-3"
+                    className="flex-1 cursor-pointer transition-all text-center rounded-2xl p-5 flex flex-col items-center gap-2 relative overflow-hidden group"
                     style={{
-                      background: '#FFF7ED',
-                      border: '2px solid #FDBA74',
+                      background: 'linear-gradient(180deg, #FB923C 0%, #EA580C 100%)',
+                      border: 'none',
+                      boxShadow: '0 6px 0 #C2410C, 0 10px 20px rgba(0,0,0,0.2)',
+                      transform: 'translateY(0)',
                     }}
-                    onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
-                    onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0)')}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.transform = 'translateY(-3px)';
+                      e.currentTarget.style.boxShadow = '0 9px 0 #C2410C, 0 15px 25px rgba(0,0,0,0.25)';
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 6px 0 #C2410C, 0 10px 20px rgba(0,0,0,0.2)';
+                    }}
+                    onMouseDown={e => {
+                      e.currentTarget.style.transform = 'translateY(3px)';
+                      e.currentTarget.style.boxShadow = '0 3px 0 #C2410C, 0 5px 10px rgba(0,0,0,0.15)';
+                    }}
                   >
-                    <span className="text-3xl">🔥</span>
-                    <span className="font-extrabold text-base" style={{color: '#C2410C'}}>Chơi khó</span>
+                    <span className="text-5xl drop-shadow-lg group-hover:scale-110 transition-transform">🔥</span>
+                    <span className="font-extrabold text-xl text-white tracking-wide drop-shadow-md">CHƠI KHÓ</span>
+                    <span className="text-xs text-white/90 font-medium">Thử thách thực sự</span>
                   </button>
                 </div>
               </div>
