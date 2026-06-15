@@ -2181,9 +2181,9 @@ export default function App() {
           )}
         {/* START SCREEN PANEL */}
         {gameState === GameState.START && (
-          <div id="start-overlay" className="absolute inset-0 z-25 flex flex-col items-center justify-center p-3 sm:p-5 overflow-y-auto"
+          <div id="start-overlay" className="absolute inset-0 z-25 flex flex-col items-center justify-center p-4 sm:p-8 overflow-y-auto"
             style={{
-              background: 'linear-gradient(160deg, var(--bg1), var(--bg2))',
+              background: 'linear-gradient(160deg, rgba(255, 247, 230, 0.95), rgba(238, 248, 255, 0.95))',
               fontFamily: "'Quicksand', sans-serif",
               color: 'var(--text)',
             }}
@@ -2193,99 +2193,104 @@ export default function App() {
             <div className="deco deco2"></div>
             <div className="deco deco3"></div>
 
-            <div className="w-full max-w-4xl mx-auto relative z-10 py-2 flex flex-col items-center">
+            <div className="w-full max-w-2xl mx-auto relative z-10 flex flex-col items-center">
 
               {/* Hero section with logo - using game background */}
-              <div className="rounded-3xl p-0 mb-6 relative overflow-hidden flex flex-col items-center justify-center" 
+              <div className="rounded-[2.5rem] p-0 mb-8 relative overflow-hidden flex flex-col items-center justify-center animate-in fade-in zoom-in duration-700" 
                 style={{
                   width: '100%',
-                  maxWidth: '500px',
-                  aspectRatio: '16/9',
+                  aspectRatio: '21/9',
                   backgroundImage: `url('${import.meta.env.BASE_URL}Game background.png')`,
                   backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  boxShadow: '0 18px 40px rgba(91,140,255,.25)',
+                  backgroundPosition: 'center 40%',
+                  boxShadow: '0 25px 50px -12px rgba(91,140,255,0.4)',
                 }}
               >
+                <div className="absolute inset-0 bg-black/10"></div>
                 {/* Logo image centered on game background */}
                 <img 
                   src={`${import.meta.env.BASE_URL}logo.png`} 
                   alt="Bảo Vệ Tổ Trứng"
-                  className="max-w-[70%] h-auto drop-shadow-2xl"
-                  style={{
-                    filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.3))',
-                  }}
+                  className="max-w-[80%] h-auto drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)] z-10"
                 />
               </div>
 
               {/* Difficulty select - Game-style buttons */}
-              <div className="rounded-3xl bg-white p-5 sm:p-6 mb-4 shadow-lg w-full"
+              <div className="rounded-[2rem] bg-white/70 backdrop-blur-md p-6 sm:p-8 shadow-2xl w-full border border-white/50 animate-in slide-in-from-bottom-8 duration-700 delay-200"
                 style={{
-                  boxShadow: '0 12px 30px rgba(60,60,100,.08)',
+                  boxShadow: '0 20px 40px rgba(60,60,100,.1)',
                 }}
               >
-                <div id="diff-select" className="flex flex-col sm:flex-row gap-4 justify-center">
+                <h3 className="text-center font-bold text-gray-500 uppercase tracking-widest text-sm mb-6">Chọn độ khó để bắt đầu</h3>
+                <div id="diff-select" className="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-center">
                   <button
                     id="btn-level-easy"
                     onClick={() => handleStartGame(Difficulty.EASY)}
-                    className="flex-1 cursor-pointer transition-all text-center rounded-2xl p-5 flex flex-col items-center gap-2 relative overflow-hidden group"
+                    className="cursor-pointer transition-all text-center rounded-2xl p-6 flex flex-col items-center gap-3 relative overflow-hidden group h-full"
                     style={{
                       background: 'linear-gradient(180deg, #34D399 0%, #059669 100%)',
                       border: 'none',
-                      boxShadow: '0 6px 0 #047857, 0 10px 20px rgba(0,0,0,0.2)',
-                      transform: 'translateY(0)',
+                      boxShadow: '0 8px 0 #047857, 0 15px 30px rgba(5,150,105,0.3)',
                     }}
                     onMouseEnter={e => {
-                      e.currentTarget.style.transform = 'translateY(-3px)';
-                      e.currentTarget.style.boxShadow = '0 9px 0 #047857, 0 15px 25px rgba(0,0,0,0.25)';
+                      e.currentTarget.style.transform = 'translateY(-4px)';
+                      e.currentTarget.style.boxShadow = '0 12px 0 #047857, 0 20px 35px rgba(5,150,105,0.4)';
                     }}
                     onMouseLeave={e => {
                       e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 6px 0 #047857, 0 10px 20px rgba(0,0,0,0.2)';
+                      e.currentTarget.style.boxShadow = '0 8px 0 #047857, 0 15px 30px rgba(5,150,105,0.3)';
                     }}
                     onMouseDown={e => {
-                      e.currentTarget.style.transform = 'translateY(3px)';
-                      e.currentTarget.style.boxShadow = '0 3px 0 #047857, 0 5px 10px rgba(0,0,0,0.15)';
+                      e.currentTarget.style.transform = 'translateY(4px)';
+                      e.currentTarget.style.boxShadow = '0 4px 0 #047857, 0 10px 20px rgba(0,0,0,0.15)';
                     }}
                   >
-                    <span className="text-5xl drop-shadow-lg group-hover:scale-110 transition-transform">🌟</span>
-                    <span className="font-extrabold text-xl text-white tracking-wide drop-shadow-md">CHƠI DỄ</span>
-                    <span className="text-xs text-white/90 font-medium">Dành cho bé mới tập</span>
+                    <div className="bg-white/20 rounded-full p-4 mb-1 group-hover:scale-110 transition-transform">
+                      <span className="text-5xl drop-shadow-lg">🌟</span>
+                    </div>
+                    <div>
+                      <span className="block font-black text-2xl text-white tracking-wide drop-shadow-md">CHƠI DỄ</span>
+                      <span className="text-sm text-white/90 font-semibold opacity-80">Dành cho bé mới tập</span>
+                    </div>
                   </button>
 
                   <button
                     id="btn-level-hard"
                     onClick={() => handleStartGame(Difficulty.HARD)}
-                    className="flex-1 cursor-pointer transition-all text-center rounded-2xl p-5 flex flex-col items-center gap-2 relative overflow-hidden group"
+                    className="cursor-pointer transition-all text-center rounded-2xl p-6 flex flex-col items-center gap-3 relative overflow-hidden group h-full"
                     style={{
                       background: 'linear-gradient(180deg, #FB923C 0%, #EA580C 100%)',
                       border: 'none',
-                      boxShadow: '0 6px 0 #C2410C, 0 10px 20px rgba(0,0,0,0.2)',
-                      transform: 'translateY(0)',
+                      boxShadow: '0 8px 0 #C2410C, 0 15px 30px rgba(234,88,12,0.3)',
                     }}
                     onMouseEnter={e => {
-                      e.currentTarget.style.transform = 'translateY(-3px)';
-                      e.currentTarget.style.boxShadow = '0 9px 0 #C2410C, 0 15px 25px rgba(0,0,0,0.25)';
+                      e.currentTarget.style.transform = 'translateY(-4px)';
+                      e.currentTarget.style.boxShadow = '0 12px 0 #C2410C, 0 20px 35px rgba(234,88,12,0.4)';
                     }}
                     onMouseLeave={e => {
                       e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 6px 0 #C2410C, 0 10px 20px rgba(0,0,0,0.2)';
+                      e.currentTarget.style.boxShadow = '0 8px 0 #C2410C, 0 15px 30px rgba(234,88,12,0.3)';
                     }}
                     onMouseDown={e => {
-                      e.currentTarget.style.transform = 'translateY(3px)';
-                      e.currentTarget.style.boxShadow = '0 3px 0 #C2410C, 0 5px 10px rgba(0,0,0,0.15)';
+                      e.currentTarget.style.transform = 'translateY(4px)';
+                      e.currentTarget.style.boxShadow = '0 4px 0 #C2410C, 0 10px 20px rgba(0,0,0,0.15)';
                     }}
                   >
-                    <span className="text-5xl drop-shadow-lg group-hover:scale-110 transition-transform">🔥</span>
-                    <span className="font-extrabold text-xl text-white tracking-wide drop-shadow-md">CHƠI KHÓ</span>
-                    <span className="text-xs text-white/90 font-medium">Thử thách thực sự</span>
+                    <div className="bg-white/20 rounded-full p-4 mb-1 group-hover:scale-110 transition-transform">
+                      <span className="text-5xl drop-shadow-lg">🔥</span>
+                    </div>
+                    <div>
+                      <span className="block font-black text-2xl text-white tracking-wide drop-shadow-md">CHƠI KHÓ</span>
+                      <span className="text-sm text-white/90 font-semibold opacity-80">Thử thách thực sự</span>
+                    </div>
                   </button>
                 </div>
               </div>
 
               {highScore > 0 && (
-                <div className="text-center text-sm font-semibold mb-2" style={{color: 'var(--muted)'}}>
-                  🏅 Điểm cao nhất: <span style={{color: '#F59E0B'}}>{highScore}</span>
+                <div className="mt-8 text-center bg-white/50 backdrop-blur-sm px-6 py-2 rounded-full border border-white/50 shadow-sm animate-in fade-in duration-1000 delay-500">
+                  <span className="text-gray-500 font-bold text-sm uppercase tracking-wider">🏅 Điểm cao nhất: </span>
+                  <span className="text-xl font-black" style={{color: '#F59E0B'}}>{highScore}</span>
                 </div>
               )}
             </div>
