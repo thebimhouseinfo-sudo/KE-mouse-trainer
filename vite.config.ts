@@ -5,6 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+    base: '/workspace/', // Thay 'workspace' bằng tên repo GitHub của bạn
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
