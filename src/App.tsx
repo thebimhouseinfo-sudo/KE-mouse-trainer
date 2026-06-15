@@ -2181,143 +2181,208 @@ export default function App() {
           )}
         {/* START SCREEN PANEL */}
         {gameState === GameState.START && (
-          <div id="start-overlay" className="absolute inset-0 z-25 flex flex-col items-center justify-center p-4 text-center overflow-y-auto"
+          <div
+            id="start-overlay"
             style={{
-              background: 'linear-gradient(160deg, #1a0533 0%, #0d1b4b 35%, #0a2e1a 70%, #1a1a0a 100%)',
+              background:
+                'linear-gradient(180deg, #fff8ee 0%, #fefbf3 35%, #f6fbff 100%)',
             }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
           >
-            {/* Floating sparkle decorations */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              {['⭐','✨','🌟','💫','⭐','✨','🌟','💫','⭐','✨','🌟','💫'].map((s, i) => (
-                <span key={i} className="absolute text-2xl animate-bounce select-none" style={{
-                  left: `${(i * 8.5) % 100}%`,
-                  top: `${(i * 13 + 5) % 90}%`,
-                  animationDelay: `${i * 0.3}s`,
-                  animationDuration: `${1.5 + (i % 3) * 0.5}s`,
-                  opacity: 0.6,
-                  fontSize: `${1 + (i % 3) * 0.5}rem`
-                }}>{s}</span>
-              ))}
-            </div>
+            <div
+              className="relative rounded-[36px] overflow-hidden shadow-2xl"
+              style={{
+                width: 'min(1200px, 92vw)',
+                aspectRatio: '16 / 9',
+                maxHeight: '85vh',
+                border: '6px solid rgba(255,255,255,0.8)',
+                background: '#fff',
+              }}
+            >
 
-            <div className="max-w-2xl w-full relative z-10">
-              {/* Big cute mascot egg */}
-              <div className="relative mb-4 flex items-center justify-center">
-                <div className="absolute w-48 h-48 rounded-full blur-3xl opacity-40" style={{background: 'radial-gradient(circle, #ffd700, #ff6b35)'}}></div>
-                <div className="relative flex items-end justify-center gap-3">
-                  {/* Animated baby birds */}
-                  <span className="text-5xl animate-bounce" style={{animationDelay: '0.1s', animationDuration: '1.2s'}}>🐦</span>
-                  {/* Main big egg */}
-                  <div className="relative">
-                    <div className="w-28 h-36 flex items-center justify-center animate-bounce" style={{animationDuration: '1s'}}>
-                      <svg viewBox="0 0 100 130" width="112" height="144">
-                        <defs>
-                          <radialGradient id="eggGrad" cx="35%" cy="30%">
-                            <stop offset="0%" stopColor="#fffde7"/>
-                            <stop offset="60%" stopColor="#fff176"/>
-                            <stop offset="100%" stopColor="#f9a825"/>
-                          </radialGradient>
-                        </defs>
-                        <ellipse cx="50" cy="68" rx="42" ry="55" fill="url(#eggGrad)" stroke="#f57f17" strokeWidth="3"/>
-                        <ellipse cx="38" cy="48" rx="8" ry="5" fill="white" opacity="0.6" transform="rotate(-20,38,48)"/>
-                        <text x="50" y="80" textAnchor="middle" fontSize="32">😊</text>
-                      </svg>
-                    </div>
-                    {/* Sparkle around egg */}
-                    <span className="absolute -top-2 -right-2 text-2xl animate-spin" style={{animationDuration: '3s'}}>✨</span>
-                  </div>
-                  <span className="text-5xl animate-bounce" style={{animationDelay: '0.3s', animationDuration: '1.4s'}}>🐤</span>
-                </div>
-              </div>
-
-              {/* Game title - big, round, colorful */}
-              <div className="mb-2">
-                <h1 id="main-overlay-h2" className="font-extrabold leading-tight mb-1"
-                  style={{
-                    fontSize: 'clamp(2rem, 6vw, 3.5rem)',
-                    background: 'linear-gradient(135deg, #FFD700 0%, #FF6B35 40%, #FF4081 70%, #E040FB 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                    textShadow: 'none',
-                    filter: 'drop-shadow(0 2px 8px rgba(255,107,53,0.5))',
-                    fontFamily: 'system-ui, -apple-system, sans-serif',
-                    letterSpacing: '-0.5px',
-                  }}
-                >
-                  🥚 Bảo Vệ Tổ Trứng! 🪺
-                </h1>
-                <p id="main-overlay-subtxt" className="text-base md:text-lg font-bold mb-0" style={{color: '#a5f3fc', textShadow: '0 0 10px rgba(165,243,252,0.5)'}}>
-                  🎮 Rèn chuột siêu đỉnh cho bé yêu! 🎮
-                </p>
-              </div>
-
-              {/* BIG FUN PLAY BUTTONS */}
-              <div id="diff-select" className="flex flex-col sm:flex-row gap-3 items-center justify-center w-full max-w-md mx-auto mb-4">
-                <button
-                  id="btn-level-easy"
-                  onClick={() => handleStartGame(Difficulty.EASY)}
-                  className="w-full cursor-pointer active:scale-95 transition-all"
-                  style={{
-                    padding: '16px 24px',
-                    borderRadius: '20px',
-                    fontWeight: '900',
-                    fontSize: '1.15rem',
-                    color: 'white',
-                    background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
-                    border: '3px solid rgba(255,255,255,0.4)',
-                    boxShadow: '0 6px 0 #15803d, 0 8px 20px rgba(34,197,94,0.4)',
-                    textShadow: '0 2px 4px rgba(0,0,0,0.3)',
-                    transform: 'translateY(0)',
-                    letterSpacing: '0.5px',
-                  }}
-                  onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)')}
-                  onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0) scale(1)')}
-                >
-                  <div>🌟 CHƠI DỄ 🌟</div>
-                  <div style={{fontSize: '0.72rem', fontWeight: '600', opacity: 0.9, marginTop: '2px'}}>Tốc độ chậm · Dành cho bé mới</div>
-                </button>
-
-                <button
-                  id="btn-level-hard"
-                  onClick={() => handleStartGame(Difficulty.HARD)}
-                  className="w-full cursor-pointer active:scale-95 transition-all"
-                  style={{
-                    padding: '16px 24px',
-                    borderRadius: '20px',
-                    fontWeight: '900',
-                    fontSize: '1.15rem',
-                    color: 'white',
-                    background: 'linear-gradient(135deg, #f97316 0%, #dc2626 100%)',
-                    border: '3px solid rgba(255,255,255,0.4)',
-                    boxShadow: '0 6px 0 #b91c1c, 0 8px 20px rgba(239,68,68,0.4)',
-                    textShadow: '0 2px 4px rgba(0,0,0,0.3)',
-                    transform: 'translateY(0)',
-                    letterSpacing: '0.5px',
-                  }}
-                  onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)')}
-                  onMouseLeave={e => (e.currentTarget.style.transform = 'translateY(0) scale(1)')}
-                >
-                  <div>🔥 CHƠI KHÓ 🔥</div>
-                  <div style={{fontSize: '0.72rem', fontWeight: '600', opacity: 0.9, marginTop: '2px'}}>Tốc độ nhanh · Dành cho bé pro</div>
-                </button>
-              </div>
-
-              {/* Exit Button */}
-              <a
-                href="https://kideschool.blogspot.com/p/tin-hoc.html"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-white transition-all hover:scale-105 active:scale-95"
+              <img
+                src={`${import.meta.env.BASE_URL}Game background.png`}
+                alt=""
                 style={{
-                  background: 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)',
-                  border: '2px solid rgba(255,255,255,0.3)',
-                  boxShadow: '0 4px 0 #374151, 0 6px 15px rgba(107,114,128,0.4)',
-                  textDecoration: 'none',
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
+              />
+
+              {/* Fade hòa với nền ngoài */}
+              <div
+                style={{
+                  position: 'absolute',
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  height: '220px',
+                  background:
+                    'linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,248,238,0.96))',
+                }}
+              />
+
+              {/* Bat */}
+              <img
+                src={`${import.meta.env.BASE_URL}Baby bat.png`}
+                alt=""
+                style={{
+                  position: 'absolute',
+                  top: '10%',
+                  right: '15%',
+                  width: '120px',
+                }}
+              />
+
+              <img
+                src={`${import.meta.env.BASE_URL}Big Bat.png`}
+                alt=""
+                style={{
+                  position: 'absolute',
+                  top: '20%',
+                  right: '3%',
+                  width: '180px',
+                }}
+              />
+
+              {/* Nest */}
+              <img
+                src={`${import.meta.env.BASE_URL}Nest.png`}
+                alt=""
+                style={{
+                  position: 'absolute',
+                  left: '2%',
+                  bottom: '12%',
+                  width: '320px',
+                }}
+              />
+
+              {/* Canon */}
+              <img
+                src={`${import.meta.env.BASE_URL}Canon.png`}
+                alt=""
+                style={{
+                  position: 'absolute',
+                  left: '5%',
+                  bottom: '0%',
+                  width: '180px',
+                }}
+              />
+
+              {/* Wolf */}
+              <img
+                src={`${import.meta.env.BASE_URL}Wolf.png`}
+                alt=""
+                style={{
+                  position: 'absolute',
+                  right: '-1%',
+                  bottom: '0%',
+                  width: '220px',
+                }}
+              />
+
+              {/* Center content */}
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  textAlign: 'center',
+                  padding: '24px',
                 }}
               >
-                <span className="text-xl">🏠</span>
-                <span>Về Trang Chủ</span>
-              </a>
+                <h1
+                  style={{
+                    fontSize: 'clamp(2.2rem, 5vw, 4.2rem)',
+                    fontWeight: 900,
+                    color: '#ffffff',
+                    textShadow: '0 4px 16px rgba(0,0,0,.5)',
+                    marginBottom: '12px',
+                  }}
+                >
+                  🥚 BẢO VỆ TỔ TRỨNG 🪺
+                </h1>
 
+                <div
+                  style={{
+                    background: 'rgba(255,255,255,.9)',
+                    color: '#374151',
+                    borderRadius: '24px',
+                    padding: '18px 24px',
+                    maxWidth: '700px',
+                    marginBottom: '24px',
+                    fontWeight: 700,
+                  }}
+                >
+                  🖱️ Di chuyển chuột để ngắm<br/>
+                  💥 Click trái bắn dơi<br/>
+                  🥚 Click phải làm trứng nở<br/>
+                  ⚡ Double Click cứu trứng rơi<br/>
+                  🐺 Giữ chuột và kéo để đuổi sói
+                </div>
+
+                <div
+                  style={{
+                    display: 'flex',
+                    gap: '16px',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <button
+                    onClick={() => handleStartGame(Difficulty.EASY)}
+                    style={{
+                      padding: '16px 28px',
+                      borderRadius: '20px',
+                      border: 'none',
+                      fontWeight: 900,
+                      fontSize: '1.1rem',
+                      color: '#fff',
+                      background: '#22c55e',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    🌟 CHƠI DỄ
+                  </button>
+
+                  <button
+                    onClick={() => handleStartGame(Difficulty.HARD)}
+                    style={{
+                      padding: '16px 28px',
+                      borderRadius: '20px',
+                      border: 'none',
+                      fontWeight: 900,
+                      fontSize: '1.1rem',
+                      color: '#fff',
+                      background: '#ef4444',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    🔥 CHƠI KHÓ
+                  </button>
+
+                  <a
+                    href="https://kideschool.blogspot.com/2026/06/mouse.html "
+                    style={{
+                      padding: '16px 28px',
+                      borderRadius: '20px',
+                      fontWeight: 900,
+                      fontSize: '1.1rem',
+                      color: '#fff',
+                      background: '#64748b',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    🚪 EXIT
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         )}
