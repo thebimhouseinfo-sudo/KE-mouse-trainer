@@ -2252,42 +2252,8 @@ export default function App() {
                 </p>
               </div>
 
-              {/* Game Rules - colorful cards */}
-              <div className="rounded-3xl p-4 mb-4 shadow-2xl" style={{
-                background: 'rgba(255,255,255,0.07)',
-                border: '2px solid rgba(255,255,255,0.15)',
-                backdropFilter: 'blur(10px)',
-              }}>
-                <h3 className="text-base font-extrabold mb-3 flex items-center justify-center gap-2" style={{color: '#FFD700'}}>
-                  <span className="text-xl">📖</span> Cách Chơi
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-left">
-                  {[
-                    { icon: '🖱️', color: '#60a5fa', bg: 'rgba(59,130,246,0.15)', border: 'rgba(96,165,250,0.4)', title: 'Di chuột ngắm bắn', desc: 'Di chuyển chuột để xoay nòng súng' },
-                    { icon: '🖱️', color: '#34d399', bg: 'rgba(52,211,153,0.15)', border: 'rgba(52,211,153,0.4)', title: 'Click trái bắn dơi', desc: 'Bấm chuột trái để bắn dơi và sói' },
-                    { icon: '🥚', color: '#fbbf24', bg: 'rgba(251,191,36,0.15)', border: 'rgba(251,191,36,0.4)', title: 'Click phải ấp trứng', desc: 'Click phải vào trứng lấp lánh để nở' },
-                    { icon: '💨', color: '#f87171', bg: 'rgba(248,113,113,0.15)', border: 'rgba(248,113,113,0.4)', title: 'Double click cứu trứng', desc: 'Nhấp đúp để cứu trứng rơi về tổ' },
-                  ].map((rule, i) => (
-                    <div key={i} className="rounded-2xl p-3 flex items-start gap-2" style={{background: rule.bg, border: `1.5px solid ${rule.border}`}}>
-                      <span className="text-2xl flex-shrink-0">{rule.icon}</span>
-                      <div>
-                        <div className="font-bold text-sm" style={{color: rule.color}}>{rule.title}</div>
-                        <div className="text-xs" style={{color: 'rgba(255,255,255,0.65)'}}>{rule.desc}</div>
-                      </div>
-                    </div>
-                  ))}
-                  <div className="rounded-2xl p-3 flex items-start gap-2 md:col-span-2" style={{background: 'rgba(192,132,252,0.15)', border: '1.5px solid rgba(192,132,252,0.4)'}}>
-                    <span className="text-2xl flex-shrink-0">🐺</span>
-                    <div>
-                      <div className="font-bold text-sm" style={{color: '#c084fc'}}>Giữ phải & Kéo đuổi sói</div>
-                      <div className="text-xs" style={{color: 'rgba(255,255,255,0.65)'}}>Nhấn giữ chuột phải và kéo theo để xua đuổi sói rừng</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
               {/* BIG FUN PLAY BUTTONS */}
-              <div id="diff-select" className="flex flex-col sm:flex-row gap-3 items-center justify-center w-full max-w-md mx-auto">
+              <div id="diff-select" className="flex flex-col sm:flex-row gap-3 items-center justify-center w-full max-w-md mx-auto mb-4">
                 <button
                   id="btn-level-easy"
                   onClick={() => handleStartGame(Difficulty.EASY)}
@@ -2336,6 +2302,21 @@ export default function App() {
                   <div style={{fontSize: '0.72rem', fontWeight: '600', opacity: 0.9, marginTop: '2px'}}>Tốc độ nhanh · Dành cho bé pro</div>
                 </button>
               </div>
+
+              {/* Exit Button */}
+              <a
+                href="https://kideschool.blogspot.com/p/tin-hoc.html"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-white transition-all hover:scale-105 active:scale-95"
+                style={{
+                  background: 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)',
+                  border: '2px solid rgba(255,255,255,0.3)',
+                  boxShadow: '0 4px 0 #374151, 0 6px 15px rgba(107,114,128,0.4)',
+                  textDecoration: 'none',
+                }}
+              >
+                <span className="text-xl">🏠</span>
+                <span>Về Trang Chủ</span>
+              </a>
 
             </div>
           </div>
