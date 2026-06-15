@@ -2149,7 +2149,7 @@ export default function App() {
         className="flex-1 bg-slate-950 relative flex items-center justify-center overflow-hidden h-full"
       >
         {/* Canvas wrapper - relative so pause btn anchors to game frame corner */}
-        <div className="relative w-full max-h-[85vh]" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        <div className="relative w-full h-full" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
           {gameState === GameState.PLAYING && (
             <button
               id="pause-btn"
@@ -2181,83 +2181,49 @@ export default function App() {
           )}
         {/* START SCREEN PANEL */}
         {gameState === GameState.START && (
-          <div id="start-overlay" className="absolute inset-0 z-25 flex flex-col items-center justify-start p-3 sm:p-5 text-left overflow-y-auto"
+          <div id="start-overlay" className="absolute inset-0 z-25 flex flex-col items-center justify-center p-3 sm:p-5 overflow-y-auto"
             style={{
-              background: 'linear-gradient(155deg, #EEF2FF 0%, #F5F3FF 40%, #FFF7ED 100%)',
-              fontFamily: 'system-ui, -apple-system, sans-serif',
-              color: '#1E1B4B',
+              background: 'linear-gradient(160deg, var(--bg1), var(--bg2))',
+              fontFamily: "'Quicksand', sans-serif",
+              color: 'var(--text)',
             }}
           >
-            <div className="w-full max-w-3xl mx-auto relative z-10 py-2">
+            {/* Floating decorative shapes */}
+            <div className="deco deco1"></div>
+            <div className="deco deco2"></div>
+            <div className="deco deco3"></div>
 
-              {/* Breadcrumb nav - matches parent site pill style */}
-              <div className="flex items-center gap-2 mb-4 text-xs sm:text-sm font-semibold flex-wrap" style={{color: '#6D6A8C'}}>
-                <a href="https://kideschool.blogspot.com/p/tin-hoc.html"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white shadow-sm hover:shadow transition-shadow"
-                  style={{textDecoration: 'none', color: '#6D6A8C'}}
-                >
-                  🏠 Trang chủ
-                </a>
-                <span style={{opacity: 0.5}}>›</span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full" style={{background: '#E6FCF5', color: '#0F9B8E'}}>
-                  🪺 Bảo vệ tổ chim
-                </span>
-              </div>
+            <div className="w-full max-w-4xl mx-auto relative z-10 py-2 flex flex-col items-center">
 
-              {/* Hero section with logo */}
-              <div className="rounded-3xl p-5 sm:p-7 mb-4 relative overflow-hidden flex flex-col items-center justify-center gap-4" style={{
-                background: 'linear-gradient(135deg, #8B5CF6 0%, #6366F1 55%, #38BDF8 100%)',
-                boxShadow: '0 12px 30px -10px rgba(99,102,241,0.45)',
-              }}>
-                {/* Logo image */}
+              {/* Hero section with logo - using game background */}
+              <div className="rounded-3xl p-0 mb-6 relative overflow-hidden flex flex-col items-center justify-center" 
+                style={{
+                  width: '100%',
+                  maxWidth: '500px',
+                  aspectRatio: '16/9',
+                  backgroundImage: `url('${import.meta.env.BASE_URL}Game background.png')`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  boxShadow: '0 18px 40px rgba(91,140,255,.25)',
+                }}
+              >
+                {/* Logo image centered on game background */}
                 <img 
                   src={`${import.meta.env.BASE_URL}logo.png`} 
                   alt="Bảo Vệ Tổ Trứng"
-                  className="max-w-[280px] sm:max-w-[350px] md:max-w-[420px] h-auto drop-shadow-2xl"
+                  className="max-w-[70%] h-auto drop-shadow-2xl"
                   style={{
                     filter: 'drop-shadow(0 8px 24px rgba(0,0,0,0.3))',
                   }}
                 />
-                <p className="text-base sm:text-lg font-medium text-center" style={{color: 'rgba(255,255,255,0.95)'}}>
-                  Luyện chuột cùng chim non 🐣
-                </p>
-              </div>
-
-              {/* HOW TO PLAY - visual icon grid using real mouse-click sprite */}
-              <div className="rounded-3xl bg-white p-4 sm:p-5 mb-4 shadow-sm">
-                <div className="text-xs font-bold uppercase tracking-widest mb-3 text-center" style={{color: '#9CA3AF'}}>
-                  Cách chơi
-                </div>
-                <div className="grid grid-cols-5 gap-2">
-                  {[
-                    { bgPos: '0px 0px', label: 'Di chuột', sub: 'Ngắm', bg: '#EFF6FF' },
-                    { bgPos: '-46px 0px', label: 'Click trái', sub: 'Bắn', bg: '#FFFBEB' },
-                    { bgPos: '-92px 0px', label: 'Click phải', sub: 'Ấp trứng', bg: '#ECFDF5' },
-                    { bgPos: '-46px 0px', label: '2x Click', sub: 'Nhặt trứng', bg: '#FDF2F8', badge: '✌️' },
-                    { bgPos: '-46px 0px', label: 'Giữ & kéo', sub: 'Đuổi sói', bg: '#F5F3FF', badge: '👉' },
-                  ].map((s, i) => (
-                    <div key={i} className="rounded-2xl p-2 flex flex-col items-center text-center gap-1" style={{background: s.bg}}>
-                      <div className="relative" style={{width: '46px', height: '46px'}}>
-                        <div style={{
-                          width: '46px', height: '46px',
-                          backgroundImage: `url('${import.meta.env.BASE_URL}Mouse Click.png')`,
-                          backgroundSize: '138px 46px',
-                          backgroundPosition: s.bgPos,
-                          backgroundRepeat: 'no-repeat',
-                        }} />
-                        {s.badge && (
-                          <span className="absolute -top-1 -right-1 text-xs leading-none">{s.badge}</span>
-                        )}
-                      </div>
-                      <div className="font-extrabold text-[11px] sm:text-xs leading-tight" style={{color: '#1E1B4B'}}>{s.label}</div>
-                      <div className="text-[10px] leading-tight" style={{color: '#9CA3AF'}}>{s.sub}</div>
-                    </div>
-                  ))}
-                </div>
               </div>
 
               {/* Difficulty select - Game-style buttons */}
-              <div className="rounded-3xl bg-white p-4 sm:p-5 mb-4 shadow-sm">
+              <div className="rounded-3xl bg-white p-5 sm:p-6 mb-4 shadow-lg w-full"
+                style={{
+                  boxShadow: '0 12px 30px rgba(60,60,100,.08)',
+                }}
+              >
                 <div id="diff-select" className="flex flex-col sm:flex-row gap-4 justify-center">
                   <button
                     id="btn-level-easy"
@@ -2318,7 +2284,7 @@ export default function App() {
               </div>
 
               {highScore > 0 && (
-                <div className="text-center text-sm font-semibold mb-2" style={{color: '#9CA3AF'}}>
+                <div className="text-center text-sm font-semibold mb-2" style={{color: 'var(--muted)'}}>
                   🏅 Điểm cao nhất: <span style={{color: '#F59E0B'}}>{highScore}</span>
                 </div>
               )}
@@ -2555,7 +2521,7 @@ export default function App() {
           }}
           onDoubleClick={handleDoubleClick}
           onContextMenu={(e) => e.preventDefault()} // Intercept default browser right click menu!
-          className="block bg-slate-900 border border-slate-800 rounded-[2.5rem] shadow-2xl relative aspect-[3968/2144] w-full max-h-[85vh] cursor-none object-contain h-auto z-0"
+          className="block bg-slate-900 border border-slate-800 rounded-[2.5rem] shadow-2xl relative w-full h-full cursor-none object-contain z-0"
         />
         </div>
 

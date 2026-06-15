@@ -1,1 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
+
+:root {
+  --bg1: #fff7e6;
+  --bg2: #eef8ff;
+  --purple: #8b5cf6;
+  --blue: #5b8cff;
+  --keyboard: #ff9f43;
+  --mouse: #33c2a4;
+  --parent: #a06bff;
+  --text: #35354a;
+  --muted: #8a8aa0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: linear-gradient(160deg, var(--bg1), var(--bg2));
+  min-height: 100vh;
+  color: var(--text);
+}
+
+/* Floating shapes */
+.deco {
+  position: fixed;
+  border-radius: 50%;
+  opacity: 0.35;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.deco1 {
+  width: 160px;
+  height: 160px;
+  background: #ffd166;
+  top: -40px;
+  left: -40px;
+}
+
+.deco2 {
+  width: 130px;
+  height: 130px;
+  background: #9be8d8;
+  right: -40px;
+  top: 60%;
+}
+
+.deco3 {
+  width: 100px;
+  height: 100px;
+  background: #d6c5ff;
+  bottom: 40px;
+  left: 60px;
+}
