@@ -318,17 +318,19 @@ export default function App() {
     stateRef.current.clouds = clouds;
 
     // Load Spritesheet images cleanly from our root public folder
+    // Use import.meta.env.BASE_URL to ensure correct path on GitHub Pages subdirectory
+    const baseUrl = import.meta.env.BASE_URL;
     const assetSources: Record<string, string[]> = {
-      'background': ['/Game background.png'],
-      'baby_bat': ['/Baby bat.png'],
-      'big_bat': ['/Big Bat.png'],
-      'bird': ['/Bird.png'],
-      'nest': ['/Nest.png'],
-      'wolf': ['/Wolf.png'],
-      'bullet': ['/Egg Bullet.png'],
-      'canon': ['/Canon.png'],
-      'egg': ['/Egg.png'],
-      'mouse_click': ['/Mouse Click.png']
+      'background': [`${baseUrl}Game background.png`],
+      'baby_bat': [`${baseUrl}Baby bat.png`],
+      'big_bat': [`${baseUrl}Big Bat.png`],
+      'bird': [`${baseUrl}Bird.png`],
+      'nest': [`${baseUrl}Nest.png`],
+      'wolf': [`${baseUrl}Wolf.png`],
+      'bullet': [`${baseUrl}Egg Bullet.png`],
+      'canon': [`${baseUrl}Canon.png`],
+      'egg': [`${baseUrl}Egg.png`],
+      'mouse_click': [`${baseUrl}Mouse Click.png`]
     };
 
     let loadedCount = 0;
